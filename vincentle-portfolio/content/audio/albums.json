@@ -1,0 +1,21 @@
+﻿[
+  {
+    "id": "glv-ost",
+    "title": "Good Luck Valley",
+    "cover": "/images/audio/good-luck-valley.png",
+    "tracks": [
+      { "id": "glv-1", "title": "Like Rain, We Fall", "src": "/audio/tracks/good-luck-valley/like-rain-we-fall.mp3" },
+      { "id": "glv-2", "title": "Like Petals, We Float", "src": "/audio/tracks/good-luck-valley/like-petals-we-float.mp3" },
+      { "id": "glv-3", "title": "Like Mountains, We Rise", "src": "/audio/tracks/good-luck-valley/like-mountains-we-rise.mp3" }
+    ]
+  },
+  {
+    "id": "the-game",
+    "title": "The Game",
+    "cover": "/images/audio/melting-pot.png",
+    "tracks": [
+      { "id": "tg-1", "title": "Melting Pot", "src": "/audio/tracks/the-game/melting-pot.mp3" },
+      { "id": "tg-2", "title": "Mind Palace", "src": "/audio/tracks/the-game/mind-palace.mp3" }
+    ]
+  }
+]
