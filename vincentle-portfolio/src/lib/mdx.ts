@@ -2,6 +2,7 @@
 import remarkGfm from "remark-gfm";
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolink from 'rehype-autolink-headings';
+import { mdxComponents } from "@/components/mdx/MDXComponents";
 
 export async function compile(source: string) {
     return compileMDX<{ 
@@ -17,6 +18,7 @@ export async function compile(source: string) {
     (
         {
             source,
+            components: mdxComponents,
             options: {
                 parseFrontmatter: true,
                 mdxOptions: {

@@ -1,10 +1,11 @@
 ﻿import fs from 'node:fs/promises';
 import path from 'node:path';
+import {Album} from "@/lib/types";
 
 const root = process.cwd();
 const file = (p: string) => path.join(root, 'content', p);
 
-export async function readGames(slug: string) {
+export async function readGame(slug: string) {
     return await fs.readFile(file(`games/${slug}.mdx`), 'utf8');
 }
 
@@ -23,6 +24,10 @@ export async function listWriting() {
 }
 
 export async function getAlbums() {
-    const json = await fs.readFile(file('audio/albums.json'), 'utf8');
-    return JSON.parse(json);
+    const file = path.join(process.cwd(), 'content', 'audio', 'albums.json');
+    const raw = await fs.readFile(file, 'utf8');
+    
+    // defend against sneaky UTF-8 BOM
+    const clean = raw.charCodeAt(0) === 0xfeff ? raw.slice(1) : raw;
+    return JSON.parse(clean) as Album[];
 }

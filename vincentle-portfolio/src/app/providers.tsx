@@ -49,11 +49,12 @@ export default function Providers({ children } : { children: React.ReactNode }) 
         { queue, index, playing, volume, setQueue, toggle, next, prev, setVolume }), 
         [queue, index, playing, volume]
     );
-    
-    const current = queue[index];
+
+    let current = queue[index]
     
     // Add lock-screen controls
     useEffect(() => {
+        current = queue[index]
         if ('mediaSession' in navigator && current) {
             navigator.mediaSession.metadata = new MediaMetadata({ title: current.title, artist: 'Vincent Le', album: current.album })
             navigator.mediaSession.setActionHandler('play', () => audio.current?.play())
@@ -61,7 +62,20 @@ export default function Providers({ children } : { children: React.ReactNode }) 
             navigator.mediaSession.setActionHandler('previoustrack', prev)
             navigator.mediaSession.setActionHandler('nexttrack', next)
         }
-    }, [current]) 
+    }, [queue, index])
+
+    useEffect(() => {
+        const onKey = (e: KeyboardEvent) => {
+            if (['INPUT','TEXTAREA'].includes((e.target as HTMLElement).tagName)) return
+            if (e.code === 'Space') { e.preventDefault(); toggle() }
+            if (e.code === 'ArrowRight') next()
+            if (e.code === 'ArrowLeft') prev()
+            if (e.code === 'ArrowUp') setVolume(Math.min(1, volume + 0.05))
+            if (e.code === 'ArrowDown') setVolume(Math.max(0, volume - 0.05))
+        }
+        window.addEventListener('keydown', onKey)
+        return () => window.removeEventListener('keydown', onKey)
+    }, [toggle,next,prev,volume])
     
     return (
         <C.Provider value={value}>
