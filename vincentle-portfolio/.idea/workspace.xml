@@ -4,39 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d839dd47-789a-4eee-b270-1bc532576e78" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/images/games/ghost-writer.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/games/good-luck-valley.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/audio/AlbumGrid.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/audio/Player.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/game/GameCard.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/home/HomeClient.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mdx/MDXComponents.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/PageTransition.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/writing/WritingCard.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/getGames.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/getWriting.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/types.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/utils.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/content/audio/albums.json" beforeDir="false" afterPath="$PROJECT_DIR$/content/audio/albums.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/content/games/ghost-writer.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/content/games/ghost-writer.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/content/games/good-luck-valley.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/content/games/good-luck-valley.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/about/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/about/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/audio/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/audio/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/games/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/games/[slug]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/games/writing/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/writing/[slug]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/providers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/providers.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/player/AudioPlayer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/albums/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/player/QueueDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/not-found.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/Card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/about/About.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/writing/MDXComponents.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/audio/AlbumCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/writing/TOC.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/writing/TOC.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/content.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/content.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/mdx.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/mdx.ts" afterDir="false" />
-    </list>
+    <list default="true" id="d839dd47-789a-4eee-b270-1bc532576e78" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -75,25 +43,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "js.debugger.nextJs.config.created.client": "true",
-    "js.debugger.nextJs.config.created.server": "true",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Users\\levin\\OneDrive\\Desktop\\Folders\\portfolio-2025\\vincentle-portfolio\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;js.debugger.nextJs.config.created.client&quot;: &quot;true&quot;,
+    &quot;js.debugger.nextJs.config.created.server&quot;: &quot;true&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\levin\\OneDrive\\Desktop\\Folders\\portfolio-2025\\vincentle-portfolio\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="npm.Next.js: server-side">
     <configuration name="Next.js: debug client-side" type="JavascriptDebugType" uri="http://localhost:3000/">
       <method v="2" />
@@ -120,7 +88,7 @@
       <workItem from="1754704189320" duration="2000" />
       <workItem from="1754705257750" duration="1979000" />
       <workItem from="1754762591972" duration="2194000" />
-      <workItem from="1754770068845" duration="8066000" />
+      <workItem from="1754770068845" duration="8370000" />
     </task>
     <servers />
   </component>
