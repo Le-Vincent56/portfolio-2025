@@ -1,55 +1,37 @@
-﻿import { notFound } from 'next/navigation';
-import { readGame } from '@/lib/content';
+﻿import { readGame, listGames } from '@/lib/content'
 import { compile } from '@/lib/mdx'
-import SharedCover from "@/components/ui/SharedCover";
-import PrefetchHome from "@/components/ui/PrefetchHome";
-import { Suspense } from "react";
-import ClientDelay from '@/components/ui/ClientDelay';
+import { notFound } from 'next/navigation'
+import PageTransition from "@/components/ui/PageTransition";
 
-export default async function GamePage({ params }: { params: Promise<{ slug: string }> }) {
-    const { slug } = await params;
-    
-    const raw = await readGame(slug).catch(() => null);
-    if (!raw) return notFound();
+export async function generateStaticParams() { return (await listGames()).map(slug => ({ slug })) }
 
-    const { content, frontmatter } = await compile(raw)
-
-    const title = (frontmatter.title as string) ?? slug;
-    const cover = (frontmatter.cover as string) ?? `/images/games/${slug}.jpg`;
-
-    return (
-        <div className="mx-auto max-w-4xl px-6 py-10">
-            <PrefetchHome />
-
-            {/* Hero with shared element target */}
-            <div className="relative w-full aspect-video rounded-2xl overflow-hidden ring-1 ring-white/10 mb-6">
-                <SharedCover slug={slug} cover={cover} />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4">
-                    <h1 className="text-3xl font-semibold">{title}</h1>
-                </div>
-            </div>
-
-            {/* Defer heavy body until after the 300ms cover flight */}
-            <Suspense fallback={null}>
-                {/* simple 320ms delay to let the cover flight complete */}
-                {/* You can replace with a precise onLayoutAnimationComplete if desired */}
-                <Delay ms={320}>
-                    <article className="prose prose-invert max-w-none">{content}</article>
-                </Delay>
-            </Suspense>
-        </div>
-    );
+export async function generateMetadata({ params }: { params: { slug:string } }) {
+    try {
+        const { frontmatter } = await compile(await readGame(params.slug))
+        return { title: `${frontmatter.title} — Vincent Le`, description: frontmatter.hook }
+    } catch { return { title: 'Project — Vincent Le' } }
 }
 
-function Delay({ ms, children }: { ms: number; children: React.ReactNode }) {
-    // RSC-safe shim: just waits on the client
-    return (
-        <span suppressHydrationWarning>
-      {/* eslint-disable-next-line react/no-danger */}
-            <span dangerouslySetInnerHTML={{ __html: '' }} />
-            {/* client-side hook */}
-            <ClientDelay ms={ms}>{children}</ClientDelay>
-    </span>
-    );
+export default async function ProjectPage({ params }: { params: { slug: string } }) {
+    try {
+        const source = await readGame(params.slug)
+        const { content, frontmatter } = await compile(source)
+        const sections = frontmatter.sections ?? ['overview']
+        return (
+            <PageTransition>
+                <main className="mx-auto max-w-6xl px-6 py-12 grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-8">
+                    <aside aria-label="Project sections" className="sticky top-24 h-fit hidden lg:block">
+                        <nav className="text-sm space-y-2 text-white/70">
+                            {sections.map(id => (
+                                <a key={id} href={`#${id}`} className="block hover:text-white">{id}</a>
+                            ))}
+                        </nav>
+                    </aside>
+                    <article className="prose prose-invert max-w-none">{content}</article>
+                </main>
+            </PageTransition>
+        )
+    } catch {
+        notFound()
+    }
 }

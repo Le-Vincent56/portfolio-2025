@@ -7,8 +7,6 @@ import AlbumCard from '@/components/audio/AlbumCard';
 import Player from '@/components/audio/Player';
 import WritingCard from '@/components/writing/WritingCard';
 import About from '@/components/about/About';
-import { UIPrefsProvider } from '@/components/prefs/UIPrefsProvider';
-import SettingsFab from '@/components/prefs/SettingsFab';
 import { Album, GamesMeta, Track, WritingMeta } from '@/lib/types';
 
 function Sidebar() {
@@ -77,12 +75,7 @@ export default function HomeClient({
 
             <Sidebar />
 
-            <motion.main
-                className="mx-auto max-w-6xl px-6 py-10 lg:pl-56 space-y-24"
-                initial={false}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0, transition: { duration: 0.18 } }}
-            >
+            <main className="mx-auto max-w-6xl px-6 py-10 lg:pl-56 space-y-24">
                 <Hero />
                 <About />
 
@@ -139,7 +132,7 @@ export default function HomeClient({
                         ))}
                     </div>
                 </section>
-            </motion.main>
+            </main>
 
             <Player
                 queue={queue}
@@ -148,8 +141,6 @@ export default function HomeClient({
                 playing={playing}
                 setPlayingAction={setPlaying}
             />
-
-            <SettingsFab />
         </div>
     );
 }
