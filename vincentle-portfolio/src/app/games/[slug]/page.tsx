@@ -3,8 +3,8 @@ import { readGame } from '@/lib/content';
 import { compile } from '@/lib/mdx'
 import SharedCover from "@/components/ui/SharedCover";
 import PrefetchHome from "@/components/ui/PrefetchHome";
-import { Suspense } from "react";
-import ClientDelay from '@/components/ui/ClientDelay';
+import BackToHome from '@/components/ui/BackToHome';
+import FadeInOnMount from "@/components/ui/FadeInOnMount";
 
 export default async function GamePage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
@@ -20,8 +20,9 @@ export default async function GamePage({ params }: { params: Promise<{ slug: str
     return (
         <div className="mx-auto max-w-4xl px-6 py-10">
             <PrefetchHome />
+            <BackToHome />
 
-            {/* Hero with shared element target */}
+            {/* Hero with the shared element target */}
             <div className="relative w-full aspect-video rounded-2xl overflow-hidden ring-1 ring-white/10 mb-6">
                 <SharedCover slug={slug} cover={cover} />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
@@ -30,26 +31,9 @@ export default async function GamePage({ params }: { params: Promise<{ slug: str
                 </div>
             </div>
 
-            {/* Defer heavy body until after the 300ms cover flight */}
-            <Suspense fallback={null}>
-                {/* simple 320ms delay to let the cover flight complete */}
-                {/* You can replace with a precise onLayoutAnimationComplete if desired */}
-                <Delay ms={320}>
-                    <article className="prose prose-invert max-w-none">{content}</article>
-                </Delay>
-            </Suspense>
+            <FadeInOnMount delay={0.32}>
+                <article className="prose prose-invert max-w-none">{content}</article>
+            </FadeInOnMount>
         </div>
-    );
-}
-
-function Delay({ ms, children }: { ms: number; children: React.ReactNode }) {
-    // RSC-safe shim: just waits on the client
-    return (
-        <span suppressHydrationWarning>
-      {/* eslint-disable-next-line react/no-danger */}
-            <span dangerouslySetInnerHTML={{ __html: '' }} />
-            {/* client-side hook */}
-            <ClientDelay ms={ms}>{children}</ClientDelay>
-    </span>
     );
 }

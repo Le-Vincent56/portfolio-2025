@@ -5,22 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d839dd47-789a-4eee-b270-1bc532576e78" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/ui/ClientDelay.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/SharedCover.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/BackToHome.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/FadeInOnMount.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/about/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/about/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/audio/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/audio/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/games/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/games/[slug]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/writing/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/writing/[slug]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/game/CodeSnippet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/prefs/SettingsFab.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/game/GameCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/game/GameCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/game/KPIBand.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/prefs/UIPrefsProvider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/game/MediaBlock.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/providers/AppProviders.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/game/StickySidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/PrefetchHome.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/home/HomeClient.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/HomeClient.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/ClientDelay.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/SharedCover.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/SharedCover.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +68,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Users\\levin\\Desktop\\Folders\\portfolio-2025\\vincentle-portfolio\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "C:\\Users\\levin\\OneDrive\\Desktop\\Folders\\portfolio-2025\\vincentle-portfolio\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -108,6 +100,7 @@
       <workItem from="1754762591972" duration="2194000" />
       <workItem from="1754770068845" duration="8370000" />
       <workItem from="1754849051953" duration="8007000" />
+      <workItem from="1754871445579" duration="1465000" />
     </task>
     <servers />
   </component>

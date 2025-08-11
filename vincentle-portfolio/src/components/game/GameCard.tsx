@@ -8,6 +8,10 @@ import { useUIPrefs } from '@/components/prefs/UIPrefsProvider';
 import Link from 'next/link';
 import {useRouter} from "next/navigation";
 
+const canShared = () => typeof window !== 'undefined'
+    && window.matchMedia('(hover:hover) and (pointer:fine)').matches
+    && window.innerWidth >= 768;
+
 export default function GameCard({
         project,
         isDimmed = false,
@@ -61,35 +65,27 @@ export default function GameCard({
     }
     
     const router = useRouter();
-    const anchorRef = useRef<HTMLDivElement>(null);
-    
-    const canShared = typeof window !== 'undefined'
-        ? window.matchMedia('(hover:hover) and (pointer:fine)').matches && window.innerWidth >= 768
-        : true;
+    const cardRef = useRef<HTMLDivElement>(null);
     
     async function handleClick(e: React.MouseEvent) {
-        if (!canShared) return; // let Link do a normal nav (we'll add a wipe later)
+        if (!canShared()) return; // let Link do a normal nav (we'll add a wipe later)
+        
         e.preventDefault();
-
-        // Ensure in view
-        const el = anchorRef.current;
+        const el = cardRef.current;
         if (el) {
-            const rect = el.getBoundingClientRect();
-            const fullyVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
-            if (!fullyVisible) {
-                el.scrollIntoView({behavior: 'smooth', block: 'center'});
-                // wait a tick for scroll, you can tune this if needed
-                await new Promise((r) => setTimeout(r, 160));
+            const r = el.getBoundingClientRect();
+            if (r.top < 0 || r.bottom > window.innerHeight) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                await new Promise(r => setTimeout(r, 160));
             }
         }
-        
         router.push(`/games/${project.slug}`, { scroll: false });
     }
 
     return (
         <Link href={`/games/${project.slug}`} scroll={false} prefetch onClick={handleClick}>
             <motion.div
-                ref={anchorRef}
+                ref={cardRef}
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.4 }}
@@ -137,7 +133,7 @@ export default function GameCard({
                                 layoutId={`cover-${project.slug}`}
                                 className="absolute inset-0 rounded-2xl transform-gpu will-change-transform"
                                 initial={false}
-                                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                transition={{ duration: 0.30, ease: 'easeInOut' }}
                             >
                                 <Image src={project.cover} alt="" fill className="object-cover" />
                             </motion.div>

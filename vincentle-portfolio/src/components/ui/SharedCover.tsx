@@ -9,7 +9,7 @@ export default function SharedCover({ slug, cover }: { slug: string; cover: stri
             layoutId={`cover-${slug}`}
             className="absolute inset-0 rounded-2xl transform-gpu will-change-transform"
             initial={false}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            transition={{ duration: 0.30, ease: 'easeInOut' }}
         >
             <Image src={cover} alt="" fill className="object-cover" priority />
         </motion.div>
