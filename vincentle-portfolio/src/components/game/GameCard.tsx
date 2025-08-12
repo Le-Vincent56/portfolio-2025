@@ -53,7 +53,7 @@ export default function GameCard({
                         className="object-cover"
                     />
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-black/10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-transparent" />
                 <div className="absolute left-5 right-5 bottom-5">
                     <h3 className="text-2xl font-semibold tracking-tight">{project.title}</h3>
                     {project.hook && <p className="text-white/80">{project.hook}</p>}

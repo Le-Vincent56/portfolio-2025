@@ -4,10 +4,12 @@ import { Album } from '@/lib/types';
 import AlbumCard from '@/components/audio/AlbumCard';
 import { usePlayer } from '@/components/audio/PlayerProvider';
 import { motion } from 'framer-motion';
+import clsx from "clsx";
 
 export default function AudioSection({ albums }: { albums: Album[] }) {
     const [expanded, setExpanded] = useState(false);
     const [openIds, setOpenIds] = useState<Set<string>>(new Set());
+    const [hoveredID, setHoveredID] = useState<string | null>(null);
     const p = usePlayer();
 
     const visible = useMemo(() => expanded ? albums : albums.slice(0, 6), [expanded, albums]);
@@ -31,16 +33,31 @@ export default function AudioSection({ albums }: { albums: Album[] }) {
                 )}
             </div>
 
-            <motion.div layout className="grid [grid-template-columns:repeat(auto-fit,minmax(200px,3fr))] gap-6">
-                {visible.map((a) => (
-                    <AlbumCard
-                        key={a.id}
-                        album={a}
-                        isOpen={openIds.has(a.id)}
-                        onToggleAction={() => toggleOpen(a.id)}
-                        onPlayAction={(idx) => p.setQueue(a.tracks, idx)}
-                    />
-                ))}
+            <motion.div className={clsx(
+                'grid gap-6', // space between cards
+                'grid-cols-1', // mobile default
+                'sm:grid-cols-2', // 2 columns for small screens
+                'lg:grid-cols-3'  // 3 columns for large screens
+            )}
+            >
+                {visible.map((a) => {
+                        const isDimmed = !!hoveredID && hoveredID !== a.id;
+                        return (
+                            <AlbumCard
+                                key={a.id}
+                                album={a}
+                                isOpen={openIds.has(a.id)}
+                                isDimmed={isDimmed}
+                                onToggleAction={() => toggleOpen(a.id)}
+                                onPlayAction={(idx) => p.setQueue(a.tracks, idx)}
+                                onHoverStartAction={() => setHoveredID(a.id)}
+                                onHoverEndAction={() => setHoveredID(null)}
+                                onFocusAction={() => setHoveredID(a.id)}
+                                onBlurAction={() => setHoveredID(null)}
+                            />
+                        )
+                    }
+                )}
             </motion.div>
 
             {!expanded && albums.length > 6 && (

@@ -9,6 +9,7 @@ import WritingCard from '@/components/writing/WritingCard';
 import About from '@/components/about/About';
 import { Album, GamesMeta, Track, WritingMeta } from '@/lib/types';
 import AudioSection from '@/components/audio/AudioSection';
+import GamesSection from "@/components/game/GamesSection";
 
 function Sidebar() {
     return (
@@ -64,12 +65,6 @@ export default function HomeClient({
     games: GamesMeta[];
     writing: WritingMeta[];
 }) {
-    const [queue, setQueue] = useState<Track[]>([]);
-    const [index, setIndex] = useState(0);
-    const [playing, setPlaying] = useState(false);
-    const currentId = queue[index]?.id;
-    const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
-
     return (
         <div className="min-h-screen bg-[#0D0E11] text-white">
             <style>{`:root{ --brand:#6E3FF3; --brand-2:#7E58F6; }`}</style>
@@ -81,28 +76,7 @@ export default function HomeClient({
                 <About />
 
                 {/* Games */}
-                <section id="games">
-                    <div className="flex items-end justify-between mb-4">
-                        <h2 className="text-3xl font-semibold">Games</h2>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {games.map((p) => {
-                            const isDimmed = !!hoveredSlug && hoveredSlug !== p.slug;
-                            return (
-                                <GameCard
-                                    key={p.slug}
-                                    project={p}
-                                    isDimmed={isDimmed}
-                                    onHoverStartAction={() => setHoveredSlug(p.slug)}
-                                    onHoverEndAction={() => setHoveredSlug(null)}
-                                    onFocusAction={() => setHoveredSlug(p.slug)}
-                                    onBlurAction={() => setHoveredSlug(null)}
-                                />
-                            );
-                        })}
-                    </div>
-                </section>
+                <GamesSection games={games}/>
 
                 {/* Audio */}
                 <AudioSection albums={albums}/>
@@ -117,14 +91,6 @@ export default function HomeClient({
                     </div>
                 </section>
             </main>
-
-            <Player
-                queue={queue}
-                index={index}
-                setIndexAction={setIndex}
-                playing={playing}
-                setPlayingAction={setPlaying}
-            />
         </div>
     );
 }

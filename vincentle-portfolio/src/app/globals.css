@@ -6,11 +6,9 @@
   --album-card-size: 375px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --color-brand-500: #7c3aed;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -26,36 +24,46 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Minimal scrollbar that fades when idle */
 .modern-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,0.28) transparent; /* Firefox */
+  scrollbar-color: rgba(255,255,255,0.28) transparent;
 }
 
-/* WebKit */
 .modern-scrollbar::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
+
 .modern-scrollbar::-webkit-scrollbar-track {
   background: transparent;
 }
+
 .modern-scrollbar::-webkit-scrollbar-thumb {
   background-color: rgba(255,255,255,0.22);
   border-radius: 9999px;
 }
+
 .modern-scrollbar::-webkit-scrollbar-thumb:vertical {
-  min-height: 24px; /* prevents tiny jumpy thumb */
+  min-height: 24px;
 }
 
-/* Auto-hide when not interacting (desktop hovers) */
 @media (hover: hover) {
   .modern-scrollbar:not(:hover) {
-    scrollbar-color: transparent transparent; /* Firefox */
+    scrollbar-color: transparent transparent;
   }
   .modern-scrollbar:not(:hover)::-webkit-scrollbar-thumb {
-    background-color: transparent; /* WebKit */
+    background-color: transparent;
   }
+}
+
+.scroll-overlay {
+  padding-right: 8px;
+  margin-right: -8px;
+  scrollbar-gutter: auto;
+}
+
+.scroll-overlay::-webkit-scrollbar {
+  width: 8px;
 }
 
 .album-card {
@@ -63,13 +71,11 @@ body {
   height: var(--album-card-size);
 }
 
-/* Smoothly reframe cover as the header squashes */
 .cover-img {
   object-position: 50% 50%;
   transition: object-position 0.32s ease-in-out;
 }
 
 [data-open="true"] .cover-img {
-  /* bias toward the top when it's a header; tweak the % to taste */
   object-position: 50% 20%;
 }
