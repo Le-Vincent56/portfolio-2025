@@ -1,10 +1,11 @@
-﻿'use client';
+﻿// AlbumCard.tsx
+'use client';
 
 import { Album } from '@/lib/types';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play as PlayIcon, Pause as PauseIcon } from 'lucide-react';
 import { usePlayer } from '@/components/audio/PlayerProvider';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 
 const fmt = (s?: number) => {
     if (!s || s <= 0) return '--:--';
@@ -15,6 +16,9 @@ const fmt = (s?: number) => {
 
 const HEADER_PX = 96;
 const HEADER_DURATION = 0.32;
+const MOBILE_ROW_H = 63;
+const DESKTOP_ROW_H = 78;
+const MOBILE_ROWS = 3; // ← change this to show more/less rows on mobile
 
 export default function AlbumCard({
         album,
@@ -40,7 +44,7 @@ export default function AlbumCard({
     const p = usePlayer();
     const currentTrackId = p.queue[p.index]?.id;
 
-    // delay track list mount so the squash looks clean
+    // delay track list mount so the squash looks clean (desktop/tablet only)
     const [showList, setShowList] = useState(isOpen);
     useEffect(() => {
         if (isOpen) {
@@ -51,12 +55,95 @@ export default function AlbumCard({
         }
     }, [isOpen]);
 
-    return (
+    // ======== MOBILE (≤ sm) — horizontal, always-open list to the right of cover ========
+    const mobileMaxHeight = useMemo(() => MOBILE_ROW_H * MOBILE_ROWS, []);
+    const MobileCard = (
+        <div
+            className="sm:hidden relative w-full overflow-hidden rounded-2xl border border-transparent bg-[#0F1016]
+                 ring-2 ring-transparent hover:ring-[var(--brand)]
+                 ring-offset-2 ring-offset-[#0D0E11] transition-colors duration-300 ease-out"
+            onMouseEnter={onHoverStartAction}
+            onMouseLeave={onHoverEndAction}
+            onFocus={onFocusAction}
+            onBlur={onBlurAction}
+        >
+            <div className="flex gap-3 p-3">
+                {/* Left: cover */}
+                <div className="shrink-0">
+                    <div className="h-28 w-28 overflow-hidden rounded-xl bg-white/10">
+                        <img src={album.cover} alt="" className="h-full w-full object-cover" />
+                    </div>
+                </div>
+
+                {/* Right: title + list (fixed rows, scroll overlay) */}
+                <div className="min-w-0 flex-1">
+                    <div className="font-semibold text-lg leading-tight mb-2">{album.title}</div>
+
+                    <div
+                        className="rounded-lg bg-white/5 backdrop-blur-sm modern-scrollbar scroll-overlay overflow-y-auto"
+                        style={{ maxHeight: mobileMaxHeight }}
+                    >
+                        {album.tracks.map((t, i) => {
+                            const isCurrent = currentTrackId === t.id;
+                            const isActive = isCurrent && p.playing;
+                            return (
+                                <div
+                                    key={t.id}
+                                    role="option"
+                                    aria-selected={isActive}
+                                    className={`flex w-full items-center
+                                        ${isActive ? 'bg-white/10' : 'hover:bg-white/5'}
+                                        border-b-2 border-white/10 last:border-b-0
+                                        `}
+                                    onDoubleClick={() => {
+                                        if (isCurrent && p.playing) p.seek(0);
+                                        else onPlayAction(i);
+                                    }}
+                                    style={{ height: MOBILE_ROW_H }}
+                                >
+                                    {/* tiny cover */}
+                                    <div className="pl-3">
+                                        <div className="h-8 w-8 overflow-hidden rounded-md bg-white/10">
+                                            <img src={album.cover} alt="" className="h-full w-full object-cover" />
+                                        </div>
+                                    </div>
+
+                                    {/* title */}
+                                    <div className="flex-1 min-w-0 truncate text-sm px-3">{t.title}</div>
+
+                                    {/* duration */}
+                                    <div className="text-xs tabular-nums text-white/70 px-3">
+                                        {fmt((t as any).duration)}
+                                    </div>
+
+                                    {/* play/pause */}
+                                    <button
+                                        className="rounded-md p-1.5 mr-3 hover:bg-white/10 cursor-pointer"
+                                        aria-label={isActive ? 'Pause' : 'Play'}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            isCurrent ? p.toggle() : onPlayAction(i);
+                                        }}
+                                    >
+                                        <span className="sr-only">{isActive ? 'Pause' : 'Play'}</span>
+                                        {isActive ? <PauseIcon size={16} /> : <PlayIcon size={16} />}
+                                    </button>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+
+    // ======== DESKTOP/TABLET (sm+) — your existing animated card ========
+    const DesktopCard = (
         <motion.div
             data-open={isOpen ? 'true' : 'false'}
             layout
             transition={{ type: 'spring', stiffness: 260, damping: 26 }}
-            className="relative aspect-square w-full overflow-hidden rounded-2xl border border-white/10 bg-[#0F1016] 
+            className="hidden sm:block relative aspect-square w-full overflow-hidden rounded-2xl border border-transparent bg-[#0F1016] 
                 ring-2 ring-transparent hover:ring-[var(--brand)]
                 ring-offset-2 ring-offset-[#0D0E11]
                 transition-colors duration-300 ease-out"
@@ -139,12 +226,15 @@ export default function AlbumCard({
                                             key={t.id}
                                             role="option"
                                             aria-selected={isActive}
-                                            className={`flex w-full items-center ${isActive ? 'bg-white/10' : 'hover:bg-white/5'}`}
+                                            className={`flex w-full items-center
+                                                ${isActive ? 'bg-white/10' : 'hover:bg-white/5'}
+                                                border-b border-white/10 last:border-b-0
+                                                `}
                                             onDoubleClick={() => {
                                                 if (isCurrent && p.playing) p.seek(0);
                                                 else onPlayAction(i);
                                             }}
-                                            style={{ height: 64 }}
+                                            style={{ height: DESKTOP_ROW_H }}
                                         >
                                             {/* tiny cover */}
                                             <div className="pl-3">
@@ -182,5 +272,12 @@ export default function AlbumCard({
                 )}
             </AnimatePresence>
         </motion.div>
+    );
+
+    return (
+        <>
+            {MobileCard}
+            {DesktopCard}
+        </>
     );
 }

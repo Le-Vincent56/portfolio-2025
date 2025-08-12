@@ -1,13 +1,9 @@
 ﻿'use client';
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import GameCard from '@/components/game/GameCard';
-import AlbumCard from '@/components/audio/AlbumCard';
-import Player from '@/components/audio/Player';
 import WritingCard from '@/components/writing/WritingCard';
 import About from '@/components/about/About';
-import { Album, GamesMeta, Track, WritingMeta } from '@/lib/types';
+import { Album, GamesMeta, WritingMeta } from '@/lib/types';
 import AudioSection from '@/components/audio/AudioSection';
 import GamesSection from "@/components/game/GamesSection";
 
@@ -61,17 +57,17 @@ export default function HomeClient({
         games,
         writing,
     }: {
-    albums: Album[];
-    games: GamesMeta[];
-    writing: WritingMeta[];
-}) {
+        albums: Album[];
+        games: GamesMeta[];
+        writing: WritingMeta[];
+    }) {
     return (
         <div className="min-h-screen bg-[#0D0E11] text-white">
             <style>{`:root{ --brand:#6E3FF3; --brand-2:#7E58F6; }`}</style>
 
             <Sidebar />
 
-            <main className="mx-auto max-w-6xl px-6 py-10 lg:pl-56 space-y-24">
+            <main className="mx-auto max-w-7xl px-6 py-10 lg:pl-56 space-y-24">
                 <Hero />
                 <About />
 

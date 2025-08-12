@@ -49,7 +49,10 @@ export default function AudioSection({ albums }: { albums: Album[] }) {
                                 isOpen={openIds.has(a.id)}
                                 isDimmed={isDimmed}
                                 onToggleAction={() => toggleOpen(a.id)}
-                                onPlayAction={(idx) => p.setQueue(a.tracks, idx)}
+                                onPlayAction={(idx) => p.setQueue(
+                                    a.tracks.map(t => ({...t, albumTitle: a.title, albumCover: a.cover})),
+                                    idx
+                                )}
                                 onHoverStartAction={() => setHoveredID(a.id)}
                                 onHoverEndAction={() => setHoveredID(null)}
                                 onFocusAction={() => setHoveredID(a.id)}

@@ -18,6 +18,8 @@ export type Track = {
     title: string;
     src: string;
     duration?: number;
+    albumTitle?: string;
+    albumCover?: string;
 };
 
 export type Album = {

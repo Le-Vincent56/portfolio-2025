@@ -61,7 +61,6 @@ export default function PlayerProvider({ children }: { children: React.ReactNode
         }
         setIndex(i => {
             const n = i + 1 < queue.length ? i + 1 : 0;
-            // album loop or wrap-off: always wrap because spec says wrapping
             return n;
         });
         setPlaying(true);
@@ -174,8 +173,8 @@ export default function PlayerProvider({ children }: { children: React.ReactNode
             navigator.mediaSession.metadata = new MediaMetadata({
                 title: current.title,
                 artist: 'Vincent Le',
-                album: '', // you can fill this from UI context when you pass album title if desired
-                artwork: [{ src: '', sizes: '512x512', type: 'image/png' }], // optional cover; you can update from caller
+                album: current.albumTitle ?? '',
+                artwork: current.albumCover ? [{ src: current.albumCover, sizes: '512x512', type: 'image/png' }] : []
             });
             navigator.mediaSession.setActionHandler('play', () => setPlaying(true));
             navigator.mediaSession.setActionHandler('pause', () => setPlaying(false));
