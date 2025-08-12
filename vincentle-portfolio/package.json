@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "prebuild": "node scripts/build-audio-meta.cjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -12,6 +13,7 @@
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.12",
     "gray-matter": "^4.0.3",
+    "lucide-react": "^0.539.0",
     "next": "15.4.6",
     "next-mdx-remote": "^5.0.0",
     "react": "19.1.0",

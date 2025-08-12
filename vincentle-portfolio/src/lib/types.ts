@@ -16,7 +16,8 @@ export interface WritingMeta {
 export type Track = {
     id: string;
     title: string;
-    src?: string; // optional while mocking
+    src: string;
+    duration?: number;
 };
 
 export type Album = {
@@ -25,3 +26,5 @@ export type Album = {
     cover: string;
     tracks: Track[];
 };
+
+export type LoopMode = 'off' | 'track' | 'album';

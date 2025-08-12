@@ -8,6 +8,7 @@ import Player from '@/components/audio/Player';
 import WritingCard from '@/components/writing/WritingCard';
 import About from '@/components/about/About';
 import { Album, GamesMeta, Track, WritingMeta } from '@/lib/types';
+import AudioSection from '@/components/audio/AudioSection';
 
 function Sidebar() {
     return (
@@ -104,24 +105,7 @@ export default function HomeClient({
                 </section>
 
                 {/* Audio */}
-                <section id="audio">
-                    <h2 className="text-3xl font-semibold mb-4">Audio</h2>
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {albums.map((a) => (
-                            <AlbumCard
-                                key={a.id}
-                                album={a}
-                                currentId={currentId}
-                                playing={playing}
-                                onPlay={(album, idx) => {
-                                    setQueue(album.tracks);
-                                    setIndex(idx);
-                                    setPlaying(true);
-                                }}
-                            />
-                        ))}
-                    </div>
-                </section>
+                <AudioSection albums={albums}/>
 
                 {/* Writing */}
                 <section id="writing">

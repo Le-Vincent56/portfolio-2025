@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import HomeClient from '@/components/home/HomeClient';
+import NowPlaying from '@/components/audio/NowPlaying';
 import { getAlbums } from '@/lib/content';
 import { GetGames } from '@/lib/getGames';
 import { GetWritings } from '@/lib/getWriting';
@@ -15,5 +16,10 @@ export default async function Page() {
         GetWritings(),
     ])
 
-    return <HomeClient albums={albums} games={projects} writing={writing} />;
+    return (
+        <>
+            <HomeClient albums={albums} games={projects} writing={writing} />
+            <NowPlaying />
+        </>
+    )
 }

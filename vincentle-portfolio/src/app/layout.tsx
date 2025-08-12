@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Providers from "./providers";
+import PlayerProvider from "@/components/audio/PlayerProvider"
 import "./globals.css";
 import { generalSans } from './fonts'
 
@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
       <html lang="en" className={generalSans.variable}>
           <body className="bg-[#0B0B0E] text-white font-sans antialiased">
-          <Providers>{children}</Providers>
+          <PlayerProvider>{children}</PlayerProvider>
           </body>
       </html>
   );

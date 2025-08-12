@@ -4,7 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d839dd47-789a-4eee-b270-1bc532576e78" name="Changes" comment="" />
+    <list default="true" id="d839dd47-789a-4eee-b270-1bc532576e78" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/audio/AlbumCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/audio/AlbumCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/game/CodeSnippet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/build-audio-meta.cjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/game/KPIBand.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/audio/AudioSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/game/MediaBlock.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/audio/NowPlaying.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/game/StickySidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/audio/PlayerProvider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/HomeClient.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/HomeClient.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/types.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,8 +30,8 @@
       <list>
         <option value="CSS File" />
         <option value="JSON File" />
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -58,7 +73,8 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\levin\\OneDrive\\Desktop\\Folders\\portfolio-2025\\vincentle-portfolio\\node_modules\\typescript\\lib&quot;,
+    &quot;npm.Next.js: server-side.executor&quot;: &quot;Run&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\levin\\Desktop\\Folders\\portfolio-2025\\vincentle-portfolio\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -89,6 +105,9 @@
       <workItem from="1754705257750" duration="1979000" />
       <workItem from="1754762591972" duration="2194000" />
       <workItem from="1754770068845" duration="8370000" />
+      <workItem from="1754936464064" duration="3070000" />
+      <workItem from="1754939715815" duration="4017000" />
+      <workItem from="1754959601242" duration="4483000" />
     </task>
     <servers />
   </component>
