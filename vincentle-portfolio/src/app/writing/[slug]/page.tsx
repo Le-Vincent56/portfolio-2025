@@ -14,7 +14,7 @@ export default async function WritingPage({ params }: { params: { slug: string }
             <main className="mx-auto max-w-3xl px-6 py-12">
                 <header className="mb-8">
                     <h1 className="text-3xl font-semibold">{frontmatter.title}</h1>
-                    <div className="text-sm text-white/60">{Math.ceil(stats.minutes)} min read</div>
+                    <div className="text-sm text-text/60">{Math.ceil(stats.minutes)} min read</div>
                 </header>
                 <article className="prose prose-invert max-w-none">{content}</article>
             </main>

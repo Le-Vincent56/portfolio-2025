@@ -34,7 +34,7 @@ export default function GameCard({
                 filter: isDimmed ? 'grayscale(50%)' : 'none',
             }}
             className="group block rounded-2xl overflow-hidden
-                 ring-2 ring-transparent hover:ring-[var(--brand)]
+                 ring-2 ring-transparent hover:ring-primary
                  ring-offset-2 ring-offset-[#0D0E11]
                  transition-colors duration-300 ease-out relative"
             aria-label={`${project.title} — ${project.roles.join(', ')}`}
@@ -56,7 +56,7 @@ export default function GameCard({
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-transparent" />
                 <div className="absolute left-5 right-5 bottom-5">
                     <h3 className="text-2xl font-semibold tracking-tight">{project.title}</h3>
-                    {project.hook && <p className="text-white/80">{project.hook}</p>}
+                    {project.hook && <p className="text-text/80">{project.hook}</p>}
                     {!!project.roles?.length && (
                         <div className="mt-3 flex flex-wrap gap-2">
                             {project.roles.map((r) => (

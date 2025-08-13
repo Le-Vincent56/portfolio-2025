@@ -112,7 +112,7 @@ export default function AlbumCard({
                                     <div className="flex-1 min-w-0 truncate text-sm px-3">{t.title}</div>
 
                                     {/* duration */}
-                                    <div className="text-xs tabular-nums text-white/70 px-3">
+                                    <div className="text-xs tabular-nums text-text/70 px-3">
                                         {fmt((t as any).duration)}
                                     </div>
 
@@ -137,14 +137,14 @@ export default function AlbumCard({
         </div>
     );
 
-    // ======== DESKTOP/TABLET (sm+) — your existing animated card ========
+    // ======== DESKTOP/TABLET (sm+) ========
     const DesktopCard = (
         <motion.div
             data-open={isOpen ? 'true' : 'false'}
             layout
             transition={{ type: 'spring', stiffness: 260, damping: 26 }}
             className="hidden sm:block relative aspect-square w-full overflow-hidden rounded-2xl border border-transparent bg-[#0F1016] 
-                ring-2 ring-transparent hover:ring-[var(--brand)]
+                ring-2 ring-transparent hover:ring-primary
                 ring-offset-2 ring-offset-[#0D0E11]
                 transition-colors duration-300 ease-out"
             onMouseEnter={onHoverStartAction}
@@ -247,7 +247,7 @@ export default function AlbumCard({
                                             <div className="flex-1 min-w-0 truncate text-sm px-3">{t.title}</div>
 
                                             {/* duration */}
-                                            <div className="text-xs tabular-nums text-white/70 px-3">
+                                            <div className="text-xs tabular-nums text-text/70 px-3">
                                                 {fmt((t as any).duration)}
                                             </div>
 

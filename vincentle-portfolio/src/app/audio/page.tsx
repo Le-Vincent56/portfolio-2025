@@ -12,9 +12,9 @@ export default async function AudioPage() {
                     {albums.map((a:any) => (
                         <div key={a.id} className="rounded-xl ring-1 ring-white/10 p-5">
                             <div className="text-lg font-medium">{a.title}</div>
-                            <div className="text-white/60 text-sm mb-4">{a.tracks.length} tracks</div>
+                            <div className="text-text/60 text-sm mb-4">{a.tracks.length} tracks</div>
                             {/* In v1, clicking sets the global queue from the homepage or a client component here */}
-                            <Link href="/" className="text-sm text-white/80 underline">Load in player</Link>
+                            <Link href="/" className="text-sm text-text/80 underline">Load in player</Link>
                         </div>
                     ))}
                 </div>

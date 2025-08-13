@@ -15,7 +15,7 @@ export default function About() {
         >
             <div>
                 <h2 className="text-3xl font-semibold">About</h2>
-                <p className="mt-4 text-white/80 max-w-prose">
+                <p className="mt-4 text-text/80 max-w-prose">
                     Gameplay & systems programmer • Composer • Writer. I architect clean, modular systems and
                     score the worlds I build.
                 </p>

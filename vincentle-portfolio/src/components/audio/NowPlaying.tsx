@@ -28,7 +28,6 @@ export default function NowPlaying() {
     const hasTrack = !!p.queue[p.index];
     const current = p.queue[p.index];
     const artist = 'Vincent Le'; // swap if you add per-track artist
-    const panelBg = 'bg-[#1A1D29]/90';
 
     // Esc closes volume popover first, then the expanded bar
     const onEsc = useCallback((e: KeyboardEvent) => {
@@ -58,7 +57,7 @@ export default function NowPlaying() {
                         layout
                         layoutId="np-card"
                         transition={{ layout: { duration: LAYOUT_DURATION, ease: LAYOUT_EASE } }}
-                        className={`flex items-center gap-3 rounded-2xl ${panelBg} backdrop-blur border border-white/10 p-2.5 shadow-lg`}
+                        className={`flex items-center gap-3 rounded-2xl bg-background-accent/80 backdrop-blur border border-white/10 p-2.5 shadow-lg`}
                         style={{ willChange: 'transform, width, height' }}
                     >
                         <div className="h-10 w-10 overflow-hidden rounded-lg bg-white/10">
@@ -80,21 +79,21 @@ export default function NowPlaying() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 4 }}
                             transition={{ duration: 0.2 }}
-                            className="min-w-0 text-white"
+                            className="min-w-0 text-text"
                         >
-                            <div className="text-xs text-white/80">Now Playing</div>
+                            <div className="text-xs text-text/80">Now Playing</div>
                             <div className="text-sm truncate max-w-[240px]">{current?.title}</div>
                         </motion.div>
 
                         <button
-                            className="rounded-full p-2 hover:bg-white/10 text-white"
+                            className="rounded-full p-2 hover:bg-white/10 text-text"
                             onClick={p.toggle}
                             aria-label={p.playing ? 'Pause' : 'Play'}
                         >
                             {p.playing ? <Pause size={18} /> : <Play size={18} />}
                         </button>
                         <button
-                            className="rounded-full p-2 hover:bg-white/10 text-white"
+                            className="rounded-full p-2 hover:bg-white/10 text-text"
                             onClick={() => setOpen(true)}
                             aria-label="Expand"
                         >
@@ -118,7 +117,7 @@ export default function NowPlaying() {
                         layout
                         layoutId="np-card"
                         transition={{ layout: { duration: LAYOUT_DURATION, ease: LAYOUT_EASE } }}
-                        className="relative mx-3 md:mx-auto md:max-w-5xl bg-[#1A1D29]/90 backdrop-blur rounded-2xl border border-white/10 shadow-lg"
+                        className="relative mx-3 md:mx-auto md:max-w-5xl bg-background-accent/80 backdrop-blur rounded-2xl border border-white/10 shadow-lg"
                         style={{ willChange: 'transform, width, height' }}
                     >
                         {/* Collapse caret: centered horizontally, straddling the top border */}
@@ -128,7 +127,7 @@ export default function NowPlaying() {
                             className="absolute left-1/2 -translate-x-1/2 top-0 -translate-y-1/2
                             h-8 w-8 rounded-full border border-white/15
                             bg-white/10 hover:bg-white/15
-                            flex items-center justify-center text-white shadow-md backdrop-blur"
+                            flex items-center justify-center text-text shadow-md backdrop-blur"
                             title="Collapse"
                         >
                             <ChevronUp size={16} className="rotate-180" />
@@ -162,11 +161,11 @@ export default function NowPlaying() {
                                     transition={{ duration: 0.22 }}
                                     className="min-w-0 self-start flex-1"
                                 >
-                                    <div className="truncate text-white text-base md:text-lg leading-tight">
+                                    <div className="truncate text-text text-base md:text-lg leading-tight">
                                         {current?.title}
-                                        <span className="text-white/60"> • {artist}</span>
+                                        <span className="text-text/60"> • {artist}</span>
                                     </div>
-                                    <div className="truncate text-xs md:text-sm text-white/70">
+                                    <div className="truncate text-xs md:text-sm text-text/70">
                                         {current?.albumTitle ?? ''}
                                     </div>
                                 </motion.div>
@@ -174,21 +173,21 @@ export default function NowPlaying() {
                                 {/* CENTERED transport (desktop+) */}
                                 <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-2">
                                     <button
-                                        className="rounded-full p-2 hover:bg-white/10 text-white"
+                                        className="rounded-full p-2 hover:bg-white/10 text-text"
                                         onClick={p.prev}
                                         aria-label="Previous"
                                     >
                                         <SkipBack size={18} />
                                     </button>
                                     <button
-                                        className="rounded-full p-2.5 hover:bg-white/10 text-white"
+                                        className="rounded-full p-2.5 hover:bg-white/10 text-text"
                                         onClick={p.toggle}
                                         aria-label={p.playing ? 'Pause' : 'Play'}
                                     >
                                         {p.playing ? <Pause size={20} /> : <Play size={20} />}
                                     </button>
                                     <button
-                                        className="rounded-full p-2 hover:bg-white/10 text-white"
+                                        className="rounded-full p-2 hover:bg-white/10 text-text"
                                         onClick={p.next}
                                         aria-label="Next"
                                     >
@@ -201,21 +200,21 @@ export default function NowPlaying() {
                                     {/* Transport (mobile only) */}
                                     <div className="flex items-center gap-2 md:hidden">
                                         <button
-                                            className="rounded-full p-2 hover:bg-white/10 text-white"
+                                            className="rounded-full p-2 hover:bg-white/10 text-text"
                                             onClick={p.prev}
                                             aria-label="Previous"
                                         >
                                             <SkipBack size={18} />
                                         </button>
                                         <button
-                                            className="rounded-full p-2.5 hover:bg-white/10 text-white"
+                                            className="rounded-full p-2.5 hover:bg-white/10 text-text"
                                             onClick={p.toggle}
                                             aria-label={p.playing ? 'Pause' : 'Play'}
                                         >
                                             {p.playing ? <Pause size={20} /> : <Play size={20} />}
                                         </button>
                                         <button
-                                            className="rounded-full p-2 hover:bg-white/10 text-white"
+                                            className="rounded-full p-2 hover:bg-white/10 text-text"
                                             onClick={p.next}
                                             aria-label="Next"
                                         >
@@ -225,7 +224,7 @@ export default function NowPlaying() {
 
                                     {/* Loop */}
                                     <button
-                                        className="ml-3 rounded-full p-2 hover:bg-white/10 text-white"
+                                        className="ml-3 rounded-full p-2 hover:bg-white/10 text-text"
                                         onClick={p.cycleLoop}
                                         aria-label="Loop mode"
                                         title="Loop mode"
@@ -240,7 +239,7 @@ export default function NowPlaying() {
                                     {/* Volume (column) — width mirrors duration column (w-12) */}
                                     <div className="relative ml-4 flex flex-col items-center w-12">
                                         <button
-                                            className="rounded-full p-2 hover:bg-white/10 text-white"
+                                            className="rounded-full p-2 hover:bg-white/10 text-text"
                                             onClick={() => setShowVol(v => !v)}
                                             aria-label="Volume"
                                             aria-expanded={showVol}
@@ -257,7 +256,7 @@ export default function NowPlaying() {
                                                     exit={{ opacity: 0, scale: 0.96, y: 6 }}
                                                     transition={{ duration: 0.14, ease: 'easeOut' }}
                                                     className="absolute left-1/2 -translate-x-1/2 bottom-[calc(100%+8px)]
-                                                    rounded-xl border border-white/10 bg-[#1A1D29]/95 backdrop-blur-2xl
+                                                    rounded-xl border border-white/10 bg-background-accent/95 backdrop-blur-2xl
                                                     px-3 py-3 shadow-lg"
                                                 >
                                                     <div className="h-36 w-10 flex items-center justify-center">
@@ -287,7 +286,7 @@ export default function NowPlaying() {
 
                             {/* Bottom scrubber (single) with times (right time column width = volume column width) */}
                             <div className="mt-2 flex items-center gap-2">
-                                <div className="text-[11px] tabular-nums text-white/70 w-10 text-right">
+                                <div className="text-[11px] tabular-nums text-text/70 w-10 text-right">
                                     {fmt(p.currentTime)}
                                 </div>
                                 <input
@@ -307,7 +306,7 @@ export default function NowPlaying() {
                                         })(),
                                     }}
                                 />
-                                <div className="hidden md:block text-[11px] tabular-nums text-white/70 w-12 text-center">
+                                <div className="hidden md:block text-[11px] tabular-nums text-text/70 w-12 text-center">
                                     -{fmt(Math.max(0, (p.duration || 0) - p.currentTime))}
                                 </div>
                             </div>

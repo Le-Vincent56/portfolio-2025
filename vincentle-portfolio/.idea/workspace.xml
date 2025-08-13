@@ -6,7 +6,22 @@
   <component name="ChangeListManager">
     <list default="true" id="d839dd47-789a-4eee-b270-1bc532576e78" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/about/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/about/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/audio/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/audio/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/games/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/games/[slug]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/not-found.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/not-found.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/writing/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/writing/[slug]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/about/About.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/about/About.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/audio/AlbumCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/audio/AlbumCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/audio/AudioSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/audio/AudioSection.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/audio/NowPlaying.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/audio/NowPlaying.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/game/GameCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/game/GameCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/HomeClient.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/HomeClient.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/writing/TOC.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/writing/TOC.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/writing/WritingCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/writing/WritingCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/main.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +80,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "npm.Next.js: server-side.executor": "Run",
-    "ts.external.directory.path": "C:\\Users\\levin\\Desktop\\Folders\\portfolio-2025\\vincentle-portfolio\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "C:\\Users\\levin\\OneDrive\\Desktop\\Folders\\portfolio-2025\\vincentle-portfolio\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>

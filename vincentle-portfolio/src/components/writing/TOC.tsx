@@ -11,10 +11,10 @@ export default function TOC() {
     }, [])
     
     return (
-        <nav aria-label="Table of contents" className="hidden xl:block sticky top-24 h-fit text-sm text-white/70">
+        <nav aria-label="Table of contents" className="hidden xl:block sticky top-24 h-fit text-sm text-text/70">
             <div className="font-medium mb-2">On this page</div>
             <ul className="space-y-1">
-                {heads.map(h => <li key={h.id}><a href={`#${h.id}`} className="hover:text-white">{h.text}</a></li>)}
+                {heads.map(h => <li key={h.id}><a href={`#${h.id}`} className="hover:text-text">{h.text}</a></li>)}
             </ul>
         </nav>
     );

@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
       <html lang="en" className={generalSans.variable}>
-          <body className="bg-[#0B0B0E] text-white font-sans antialiased">
+          <body className="bg-background text-text font-sans antialiased">
           <PlayerProvider>{children}</PlayerProvider>
           </body>
       </html>

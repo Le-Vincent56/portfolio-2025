@@ -21,9 +21,9 @@ export default async function ProjectPage({ params }: { params: { slug: string }
             <PageTransition>
                 <main className="mx-auto max-w-6xl px-6 py-12 grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-8">
                     <aside aria-label="Project sections" className="sticky top-24 h-fit hidden lg:block">
-                        <nav className="text-sm space-y-2 text-white/70">
+                        <nav className="text-sm space-y-2 text-text/70">
                             {sections.map(id => (
-                                <a key={id} href={`#${id}`} className="block hover:text-white">{id}</a>
+                                <a key={id} href={`#${id}`} className="block hover:text-text">{id}</a>
                             ))}
                         </nav>
                     </aside>

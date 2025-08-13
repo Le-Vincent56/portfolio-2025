@@ -27,7 +27,7 @@ export default function AudioSection({ albums }: { albums: Album[] }) {
             <div className="flex items-center justify-between mb-4">
                 <h2 className="text-3xl font-semibold">Audio</h2>
                 {expanded && (
-                    <button className="text-sm text-white/80 hover:text-white" onClick={() => setExpanded(false)}>
+                    <button className="text-sm text-text/80 hover:text-text" onClick={() => setExpanded(false)}>
                         Hide
                     </button>
                 )}
@@ -65,7 +65,7 @@ export default function AudioSection({ albums }: { albums: Album[] }) {
 
             {!expanded && albums.length > 6 && (
                 <div className="mt-4 flex justify-end">
-                    <button className="text-sm text-white/80 hover:text-white" onClick={() => setExpanded(true)}>
+                    <button className="text-sm text-text/80 hover:text-text" onClick={() => setExpanded(true)}>
                         View All
                     </button>
                 </div>

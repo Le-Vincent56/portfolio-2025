@@ -28,7 +28,7 @@ export default function WritingCard({ item }: { item: WritingMeta }) {
                     )}
                 </div>
                 <div className="p-4">
-                    <div className="text-xs text-white/60">{item.type}</div>
+                    <div className="text-xs text-text/60">{item.type}</div>
                     <div className="text-sm font-medium leading-tight">{item.title}</div>
                 </div>
             </div>
