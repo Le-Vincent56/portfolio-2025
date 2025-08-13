@@ -6,25 +6,31 @@ import {
     Play, Pause, SkipBack, SkipForward,
     Volume2, VolumeX, Repeat, Repeat1, ChevronUp
 } from 'lucide-react';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const fmt = (s: number) => {
     const m = Math.floor(s / 60);
     const r = Math.floor(s % 60);
-    return `${m}:${r.toString().padStart(2,'0')}`;
+    return `${m}:${r.toString().padStart(2, '0')}`;
 };
+
+/** ---- Animation knobs (tweak these) ---- */
+const LAYOUT_DURATION = 0.61; // ← how long the card/cover morph takes
+const LAYOUT_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]; // easeOutExpo-ish
+const ENTER_SPRING = { type: 'spring' as const, stiffness: 260, damping: 26 }; // for slide-in/out
+/** -------------------------------------- */
 
 export default function NowPlaying() {
     const p = usePlayer();
     const [open, setOpen] = useState(false);
     const [showVol, setShowVol] = useState(false);
+
     const hasTrack = !!p.queue[p.index];
     const current = p.queue[p.index];
-
-    const artist = 'Vincent Le'; // change if you have per-track artist
+    const artist = 'Vincent Le'; // swap if you add per-track artist
     const panelBg = 'bg-[#1A1D29]/90';
 
-    // close volume popover on Esc; Esc also collapses expanded bar
+    // Esc closes volume popover first, then the expanded bar
     const onEsc = useCallback((e: KeyboardEvent) => {
         if (e.key !== 'Escape') return;
         if (showVol) setShowVol(false);
@@ -36,55 +42,93 @@ export default function NowPlaying() {
         return () => window.removeEventListener('keydown', onEsc);
     }, [onEsc]);
 
-    // -------- Collapsed chip (unchanged style, just ensure white icons/text) --------
     return (
         <AnimatePresence>
+            {/* ===================== Collapsed chip ===================== */}
             {hasTrack && !open && (
                 <motion.div
                     initial={{ y: 40, opacity: 0, scale: 0.98 }}
                     animate={{ y: 0, opacity: 1, scale: 1 }}
                     exit={{ y: 40, opacity: 0, scale: 0.98 }}
-                    transition={{ type: 'spring', stiffness: 280, damping: 24 }}
-                    className="fixed right-4 bottom-4 z-50"
+                    transition={ENTER_SPRING}
+                    className="fixed right-6 bottom-6 z-50"
                 >
-                    <div className={`flex items-center gap-3 rounded-2xl ${panelBg} backdrop-blur border border-white/10 p-2.5 shadow-lg`}>
+                    {/* Shared layout container */}
+                    <motion.div
+                        layout
+                        layoutId="np-card"
+                        transition={{ layout: { duration: LAYOUT_DURATION, ease: LAYOUT_EASE } }}
+                        className={`flex items-center gap-3 rounded-2xl ${panelBg} backdrop-blur border border-white/10 p-2.5 shadow-lg`}
+                        style={{ willChange: 'transform, width, height' }}
+                    >
                         <div className="h-10 w-10 overflow-hidden rounded-lg bg-white/10">
-                            {current?.albumCover ? <img src={current.albumCover} alt="" className="h-full w-full object-cover" /> : null}
+                            {current?.albumCover ? (
+                                <motion.img
+                                    layoutId="np-cover"
+                                    transition={{ layout: { duration: LAYOUT_DURATION, ease: LAYOUT_EASE } }}
+                                    src={current.albumCover}
+                                    alt=""
+                                    className="h-full w-full object-cover"
+                                    style={{ willChange: 'transform, width, height' }}
+                                />
+                            ) : null}
                         </div>
-                        <div className="min-w-0 text-white">
-                            <div className="text-xs text-white/80">Now Playing:</div>
+
+                        {/* Title fades/slides (not shared) to avoid typography morph warping */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 4 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 4 }}
+                            transition={{ duration: 0.2 }}
+                            className="min-w-0 text-white"
+                        >
+                            <div className="text-xs text-white/80">Now Playing</div>
                             <div className="text-sm truncate max-w-[240px]">{current?.title}</div>
-                        </div>
-                        <button className="rounded-full p-2 hover:bg-white/10 text-white" onClick={p.toggle} aria-label={p.playing ? 'Pause' : 'Play'}>
+                        </motion.div>
+
+                        <button
+                            className="rounded-full p-2 hover:bg-white/10 text-white"
+                            onClick={p.toggle}
+                            aria-label={p.playing ? 'Pause' : 'Play'}
+                        >
                             {p.playing ? <Pause size={18} /> : <Play size={18} />}
                         </button>
-                        <button className="rounded-full p-2 hover:bg-white/10 text-white" onClick={() => setOpen(true)} aria-label="Expand">
+                        <button
+                            className="rounded-full p-2 hover:bg-white/10 text-white"
+                            onClick={() => setOpen(true)}
+                            aria-label="Expand"
+                        >
                             <ChevronUp size={18} />
                         </button>
-                    </div>
+                    </motion.div>
                 </motion.div>
             )}
 
-            {/* -------- Expanded Spotify-like minimized bar (mobile + desktop) -------- */}
+            {/* ===================== Expanded bar (mobile + desktop) ===================== */}
             {hasTrack && open && (
                 <motion.div
                     initial={{ y: 40, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: 40, opacity: 0 }}
-                    transition={{ type: 'spring', stiffness: 260, damping: 26 }}
-                    className="fixed inset-x-0 bottom-3 z-50"
+                    transition={ENTER_SPRING}
+                    className="fixed inset-x-0 bottom-6 z-50"
                 >
-                    <div className="relative mx-3 md:mx-auto md:max-w-5xl bg-[#1A1D29]/90 backdrop-blur rounded-2xl border border-white/10 shadow-lg">
+                    {/* Shared layout container */}
+                    <motion.div
+                        layout
+                        layoutId="np-card"
+                        transition={{ layout: { duration: LAYOUT_DURATION, ease: LAYOUT_EASE } }}
+                        className="relative mx-3 md:mx-auto md:max-w-5xl bg-[#1A1D29]/90 backdrop-blur rounded-2xl border border-white/10 shadow-lg"
+                        style={{ willChange: 'transform, width, height' }}
+                    >
                         {/* Collapse caret: centered horizontally, straddling the top border */}
                         <button
                             onClick={() => setOpen(false)}
                             aria-label="Collapse player"
-                            className="
-          absolute left-1/2 -translate-x-1/2 top-0 -translate-y-1/2
-          h-8 w-8 rounded-full border border-white/15
-          bg-white/10 hover:bg-white/15
-          flex items-center justify-center text-white shadow-md backdrop-blur
-        "
+                            className="absolute left-1/2 -translate-x-1/2 top-0 -translate-y-1/2
+                            h-8 w-8 rounded-full border border-white/15
+                            bg-white/10 hover:bg-white/15
+                            flex items-center justify-center text-white shadow-md backdrop-blur"
                             title="Collapse"
                         >
                             <ChevronUp size={16} className="rotate-180" />
@@ -92,35 +136,75 @@ export default function NowPlaying() {
 
                         {/* CONTENT */}
                         <div className="px-3 md:px-4 pt-3 pb-2">
-                            <div className="grid md:grid-cols-[auto_1fr_auto] items-start gap-x-4 md:gap-x-6">
-                                {/* LEFT: Cover + Titles (top-aligned with cover) */}
-                                <div className="flex items-start gap-3 min-w-0">
-                                    <div className="p-1 rounded-xl bg-white/5 shrink-0">
-                                        <div className="h-14 w-14 md:h-20 md:w-20 overflow-hidden rounded-lg bg-white/10">
-                                            {current?.albumCover ? (
-                                                <img src={current.albumCover} alt="" className="h-full w-full object-cover" />
-                                            ) : null}
-                                        </div>
-                                    </div>
-                                    <div className="min-w-0 self-start">
-                                        <div className="truncate text-white text-base md:text-lg leading-tight">
-                                            {current?.title}
-                                            <span className="truncate text-white/60"> • Vincent Le</span>
-                                        </div>
-                                        <div className="truncate text-xs md:text-sm text-white/70">
-                                            {current?.albumTitle ?? ''}
-                                        </div>
+                            {/* Single row: art + titles + controls (always aligned) */}
+                            <div className="relative flex items-center gap-3 md:gap-4 min-w-0">
+                                {/* LEFT: album art */}
+                                <div className="p-1 rounded-xl bg-white/5 shrink-0">
+                                    <div className="h-14 w-14 md:h-20 md:w-20 overflow-hidden rounded-lg bg-white/10">
+                                        {current?.albumCover ? (
+                                            <motion.img
+                                                layoutId="np-cover"
+                                                transition={{ layout: { duration: LAYOUT_DURATION, ease: LAYOUT_EASE } }}
+                                                src={current.albumCover}
+                                                alt=""
+                                                className="h-full w-full object-cover"
+                                                style={{ willChange: 'transform, width, height' }}
+                                            />
+                                        ) : null}
                                     </div>
                                 </div>
 
-                                {/* CENTER: (intentionally empty — bottom bar is the scrubber) */}
-                                <div />
+                                {/* Titles (fade, don't layout-share to avoid font morph) */}
+                                <motion.div
+                                    initial={{ opacity: 0, y: 6 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: 6 }}
+                                    transition={{ duration: 0.22 }}
+                                    className="min-w-0 self-start flex-1"
+                                >
+                                    <div className="truncate text-white text-base md:text-lg leading-tight">
+                                        {current?.title}
+                                        <span className="text-white/60"> • {artist}</span>
+                                    </div>
+                                    <div className="truncate text-xs md:text-sm text-white/70">
+                                        {current?.albumTitle ?? ''}
+                                    </div>
+                                </motion.div>
 
-                                {/* RIGHT: Transport • Loop • Volume (with centered popover) */}
-                                <div className="flex items-center justify-end">
-                                    {/* Transport */}
-                                    <div className="flex items-center gap-2">
-                                        <button className="rounded-full p-2 hover:bg-white/10 text-white" onClick={p.prev} aria-label="Previous">
+                                {/* CENTERED transport (desktop+) */}
+                                <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-2">
+                                    <button
+                                        className="rounded-full p-2 hover:bg-white/10 text-white"
+                                        onClick={p.prev}
+                                        aria-label="Previous"
+                                    >
+                                        <SkipBack size={18} />
+                                    </button>
+                                    <button
+                                        className="rounded-full p-2.5 hover:bg-white/10 text-white"
+                                        onClick={p.toggle}
+                                        aria-label={p.playing ? 'Pause' : 'Play'}
+                                    >
+                                        {p.playing ? <Pause size={20} /> : <Play size={20} />}
+                                    </button>
+                                    <button
+                                        className="rounded-full p-2 hover:bg-white/10 text-white"
+                                        onClick={p.next}
+                                        aria-label="Next"
+                                    >
+                                        <SkipForward size={18} />
+                                    </button>
+                                </div>
+
+                                {/* RIGHT: Transport (mobile) • Loop • Volume (popover) */}
+                                <div className="shrink-0 flex items-center ml-auto px-1.5">
+                                    {/* Transport (mobile only) */}
+                                    <div className="flex items-center gap-2 md:hidden">
+                                        <button
+                                            className="rounded-full p-2 hover:bg-white/10 text-white"
+                                            onClick={p.prev}
+                                            aria-label="Previous"
+                                        >
                                             <SkipBack size={18} />
                                         </button>
                                         <button
@@ -130,12 +214,16 @@ export default function NowPlaying() {
                                         >
                                             {p.playing ? <Pause size={20} /> : <Play size={20} />}
                                         </button>
-                                        <button className="rounded-full p-2 hover:bg-white/10 text-white" onClick={p.next} aria-label="Next">
+                                        <button
+                                            className="rounded-full p-2 hover:bg-white/10 text-white"
+                                            onClick={p.next}
+                                            aria-label="Next"
+                                        >
                                             <SkipForward size={18} />
                                         </button>
                                     </div>
 
-                                    {/* Loop with extra spacing */}
+                                    {/* Loop */}
                                     <button
                                         className="ml-3 rounded-full p-2 hover:bg-white/10 text-white"
                                         onClick={p.cycleLoop}
@@ -149,8 +237,8 @@ export default function NowPlaying() {
                                                 : <Repeat size={18} />}
                                     </button>
 
-                                    {/* Volume cluster with centered popover and duration below */}
-                                    <div className="relative ml-4 flex flex-col items-center">
+                                    {/* Volume (column) — width mirrors duration column (w-12) */}
+                                    <div className="relative ml-4 flex flex-col items-center w-12">
                                         <button
                                             className="rounded-full p-2 hover:bg-white/10 text-white"
                                             onClick={() => setShowVol(v => !v)}
@@ -160,25 +248,18 @@ export default function NowPlaying() {
                                             {p.volume === 0 ? <VolumeX size={18} /> : <Volume2 size={18} />}
                                         </button>
 
-                                        {/* total/remaining duration directly under volume icon */}
-                                        <div className="hidden md:block mt-1 text-[11px] tabular-nums text-white/70 text-center w-12">
-                                            -{fmt(Math.max(0, (p.duration || 0) - p.currentTime))}
-                                        </div>
-
-                                        {/* Volume popover — centered to icon; slider centered within popover */}
+                                        {/* Volume popover — centered on icon, inside the bar */}
                                         <AnimatePresence>
                                             {showVol && (
                                                 <motion.div
-                                                    initial={{ opacity: 0, scale: 0.96, y: 8 }}
+                                                    initial={{ opacity: 0, scale: 0.96, y: 6 }}
                                                     animate={{ opacity: 1, scale: 1, y: 0 }}
-                                                    exit={{ opacity: 0, scale: 0.96, y: 8 }}
+                                                    exit={{ opacity: 0, scale: 0.96, y: 6 }}
                                                     transition={{ duration: 0.14, ease: 'easeOut' }}
-                                                    className="absolute left-1/2 -translate-x-1/2 top-0 -translate-y-[10px]
-                                                      rounded-xl border border-white/10 bg-[#1A1D29]/95 backdrop-blur
-                                                      px-3 py-3 shadow-lg vol-pop"
-                                                    style={{ transformOrigin: 'bottom center' }}
+                                                    className="absolute left-1/2 -translate-x-1/2 bottom-[calc(100%+8px)]
+                                                    rounded-xl border border-white/10 bg-[#1A1D29]/95 backdrop-blur-2xl
+                                                    px-3 py-3 shadow-lg"
                                                 >
-                                                    {/* Center the vertical slider inside the popover */}
                                                     <div className="h-36 w-10 flex items-center justify-center">
                                                         <input
                                                             type="range"
@@ -204,7 +285,7 @@ export default function NowPlaying() {
                                 </div>
                             </div>
 
-                            {/* BOTTOM: the only progress/scrubbing bar, with durations restored */}
+                            {/* Bottom scrubber (single) with times (right time column width = volume column width) */}
                             <div className="mt-2 flex items-center gap-2">
                                 <div className="text-[11px] tabular-nums text-white/70 w-10 text-right">
                                     {fmt(p.currentTime)}
@@ -226,12 +307,12 @@ export default function NowPlaying() {
                                         })(),
                                     }}
                                 />
-                                <div className="hidden md:block text-[11px] tabular-nums text-white/70 w-12">
+                                <div className="hidden md:block text-[11px] tabular-nums text-white/70 w-12 text-center">
                                     -{fmt(Math.max(0, (p.duration || 0) - p.currentTime))}
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </motion.div>
             )}
         </AnimatePresence>

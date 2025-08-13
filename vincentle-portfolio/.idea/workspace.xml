@@ -6,17 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d839dd47-789a-4eee-b270-1bc532576e78" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/providers.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/audio/AlbumCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/audio/AlbumCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/audio/AlbumGrid.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/audio/AudioSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/audio/AudioSection.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/audio/NowPlaying.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/audio/NowPlaying.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/audio/Player.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/audio/PlayerProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/audio/PlayerProvider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/HomeClient.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/HomeClient.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/Section.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/types.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +65,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "npm.Next.js: server-side.executor": "Run",
-    "ts.external.directory.path": "C:\\Users\\levin\\OneDrive\\Desktop\\Folders\\portfolio-2025\\vincentle-portfolio\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "C:\\Users\\levin\\Desktop\\Folders\\portfolio-2025\\vincentle-portfolio\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -110,6 +100,7 @@
       <workItem from="1754939715815" duration="4017000" />
       <workItem from="1754959601242" duration="4483000" />
       <workItem from="1755012192019" duration="11346000" />
+      <workItem from="1755046531477" duration="4678000" />
     </task>
     <servers />
   </component>
