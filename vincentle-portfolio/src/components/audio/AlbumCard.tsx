@@ -58,10 +58,19 @@ export default function AlbumCard({
     // ======== MOBILE (≤ sm) — horizontal, always-open list to the right of cover ========
     const mobileMaxHeight = useMemo(() => MOBILE_ROW_H * MOBILE_ROWS, []);
     const MobileCard = (
-        <div
-            className="sm:hidden relative w-full overflow-hidden rounded-2xl border border-transparent bg-[#0F1016]
-                 ring-2 ring-transparent hover:ring-[var(--brand)]
-                 ring-offset-2 ring-offset-[#0D0E11] transition-colors duration-300 ease-out"
+        <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileFocus={{ scale: 1.04, y: -2 }}
+            transition={{ duration: 0.22 }}
+            className="sm:hidden group relative w-full overflow-hidden rounded-2xl bg-[#0F1016]
+             ring-3 ring-white/10
+             transition-[ring-color,box-shadow] duration-200
+             hover:ring-primary focus-visible:ring-primary
+             will-change-transform focus:outline-none"
+            style={{ transformOrigin: 'center' }}
             onMouseEnter={onHoverStartAction}
             onMouseLeave={onHoverEndAction}
             onFocus={onFocusAction}
@@ -134,7 +143,7 @@ export default function AlbumCard({
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 
     // ======== DESKTOP/TABLET (sm+) ========
@@ -142,11 +151,18 @@ export default function AlbumCard({
         <motion.div
             data-open={isOpen ? 'true' : 'false'}
             layout
-            transition={{ type: 'spring', stiffness: 260, damping: 26 }}
-            className="hidden sm:block relative aspect-square w-full overflow-hidden rounded-2xl border border-transparent bg-[#0F1016] 
-                ring-2 ring-transparent hover:ring-primary
-                ring-offset-2 ring-offset-[#0D0E11]
-                transition-colors duration-300 ease-out"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileFocus={{ scale: 1.04, y: -2 }}
+            transition={{ duration: 0.22 }}
+            className="hidden sm:block group relative aspect-square w-full overflow-hidden rounded-2xl bg-[#0F1016]
+             ring-3 ring-white/10
+             transition-[ring-color,box-shadow] duration-200
+             hover:ring-primary focus-within:ring-primary
+             will-change-transform focus:outline-none"
+            style={{ transformOrigin: 'center' }}
             onMouseEnter={onHoverStartAction}
             onMouseLeave={onHoverEndAction}
             onFocus={onFocusAction}

@@ -25,7 +25,7 @@ export default function AudioSection({ albums }: { albums: Album[] }) {
     return (
         <section id="audio">
             <div className="flex items-center justify-between mb-4">
-                <h2 className="text-3xl font-semibold">Audio</h2>
+                <h2 className="text-3xl font-semibold">AUDIO</h2>
                 {expanded && (
                     <button className="text-sm text-text/80 hover:text-text" onClick={() => setExpanded(false)}>
                         Hide

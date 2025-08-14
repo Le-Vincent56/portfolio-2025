@@ -5,10 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d839dd47-789a-4eee-b270-1bc532576e78" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/content/writing/a-lions-dance-introduction.mdx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/content/writing/the-weight-of-honor.mdx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/writing/WritingSection.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/games/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/games/[slug]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/writing/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/writing/[slug]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/audio/AlbumCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/audio/AlbumCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/audio/AudioSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/audio/AudioSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/game/GameCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/game/GameCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/game/GamesSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/game/GamesSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/HomeClient.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/HomeClient.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/writing/WritingCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/writing/WritingCard.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +77,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;npm.Next.js: server-side.executor&quot;: &quot;Run&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\levin\\OneDrive\\Desktop\\Folders\\portfolio-2025\\vincentle-portfolio\\node_modules\\typescript\\lib&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\levin\\Desktop\\Folders\\portfolio-2025\\vincentle-portfolio\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -104,6 +114,8 @@
       <workItem from="1755012192019" duration="11346000" />
       <workItem from="1755046531477" duration="4678000" />
       <workItem from="1755091613095" duration="1188000" />
+      <workItem from="1755102116664" duration="4189000" />
+      <workItem from="1755107993684" duration="12171000" />
     </task>
     <servers />
   </component>

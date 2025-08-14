@@ -1,4 +1,12 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@layer utilities {
+  .prose-novel {
+    @apply prose prose-invert prose-lg md:prose-xl;
+    @apply leading-relaxed;
+  }
+}
 
 :root {
   --background: #ffffff;

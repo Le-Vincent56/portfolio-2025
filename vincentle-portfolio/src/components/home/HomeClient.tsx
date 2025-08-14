@@ -6,6 +6,7 @@ import About from '@/components/about/About';
 import { Album, GamesMeta, WritingMeta } from '@/lib/types';
 import AudioSection from '@/components/audio/AudioSection';
 import GamesSection from "@/components/game/GamesSection";
+import WritingSection from "@/components/writing/WritingSection";
 
 function Sidebar() {
     return (
@@ -76,14 +77,7 @@ export default function HomeClient({
                 <AudioSection albums={albums}/>
 
                 {/* Writing */}
-                <section id="writing">
-                    <h2 className="text-3xl font-semibold mb-4">Writing</h2>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                        {writing.map((w) => (
-                            <WritingCard key={w.slug} item={w} />
-                        ))}
-                    </div>
-                </section>
+                <WritingSection writings={writing}/>
             </main>
         </div>
     );
