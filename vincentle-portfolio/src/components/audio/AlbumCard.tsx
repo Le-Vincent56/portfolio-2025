@@ -65,11 +65,9 @@ export default function AlbumCard({
             whileHover={{ scale: 1.04, y: -2 }}
             whileFocus={{ scale: 1.04, y: -2 }}
             transition={{ duration: 0.22 }}
-            className="sm:hidden group relative w-full overflow-hidden rounded-2xl bg-[#0F1016]
-             ring-3 ring-white/10
-             transition-[ring-color,box-shadow] duration-200
+            className="sm:hidden group .card-ring
              hover:ring-primary focus-visible:ring-primary
-             will-change-transform focus:outline-none"
+             card-hover"
             style={{ transformOrigin: 'center' }}
             onMouseEnter={onHoverStartAction}
             onMouseLeave={onHoverEndAction}
@@ -157,11 +155,8 @@ export default function AlbumCard({
             whileHover={{ scale: 1.04, y: -2 }}
             whileFocus={{ scale: 1.04, y: -2 }}
             transition={{ duration: 0.22 }}
-            className="hidden sm:block group relative aspect-square w-full overflow-hidden rounded-2xl bg-[#0F1016]
-             ring-3 ring-white/10
-             transition-[ring-color,box-shadow] duration-200
-             hover:ring-primary focus-within:ring-primary
-             will-change-transform focus:outline-none"
+            className="hidden sm:block group aspect-square w-full
+             card-hover card-ring card-ring-hover"
             style={{ transformOrigin: 'center' }}
             onMouseEnter={onHoverStartAction}
             onMouseLeave={onHoverEndAction}

@@ -11,6 +11,7 @@ export interface WritingMeta {
     title: string;
     type?: string;
     cover?: string;
+    readingTimeText?: string;
 }
 
 export type Track = {

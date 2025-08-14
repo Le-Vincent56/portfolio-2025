@@ -15,13 +15,13 @@ type Props = {
 };
 
 export default function WritingCard({
-                                        item,
-                                        isDimmed,
-                                        onHoverStartAction,
-                                        onHoverEndAction,
-                                        onFocusAction,
-                                        onBlurAction,
-                                    }: Props) {
+    item, 
+    isDimmed, 
+    onHoverStartAction, 
+    onHoverEndAction, 
+    onFocusAction, 
+    onBlurAction,
+}: Props) {
     return (
         <motion.a
             href={`/writing/${item.slug}`}
@@ -36,10 +36,7 @@ export default function WritingCard({
             onFocus={onFocusAction}
             onBlur={onBlurAction}
             aria-label={`${item.title} — ${item.type}`}
-            className={clsx(
-                'group block will-change-transform focus:outline-none',
-                isDimmed && 'opacity-50'
-            )}
+            className='group block card-hover'
             animate={{
                 opacity: isDimmed ? 0.4 : 1,
                 filter: isDimmed ? 'grayscale(50%)' : 'none',
@@ -47,14 +44,7 @@ export default function WritingCard({
             style={{ transformOrigin: 'center' }}
         >
             {/* Ringed container – hover/focus transitions the ring to your primary */}
-            <div
-                className="relative overflow-hidden rounded-2xl
-                  ring-3 ring-white/10
-                  transition-[ring-color,box-shadow] duration-200
-                  group-hover:ring-primary
-                  focus-visible:ring-primary
-                  bg-border"
-            >
+            <div className="card-ring card-ring-hover">
                 <div className="relative aspect-[2/3]">
                     {item.cover && (
                         <Image
@@ -79,6 +69,15 @@ export default function WritingCard({
                             {item.title}
                         </div>
                     </div>
+
+                    {item.readingTimeText && (
+                        <div className="absolute right-3 top-3 md:right-4 md:bottom-4">
+                            <span className="rounded-full bg-black/40 px-2 py-1 text-sm 
+                            leading-none tracking-wide ring-1 ring-white/10">
+                                {item.readingTimeText}
+                            </span>
+                        </div>
+                    )}
                 </div>
             </div>
         </motion.a>

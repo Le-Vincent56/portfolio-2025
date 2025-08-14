@@ -32,7 +32,7 @@ export default function GameCard({
                 opacity: isDimmed ? 0.4 : 1,
                 filter: isDimmed ? 'grayscale(50%)' : 'none',
             }}
-            className="group block will-change-transform focus:outline-none"
+            className="group block card-hover"
             style={{ transformOrigin: 'center' }}
             aria-label={`${project.title} — ${project.roles.join(', ')}`}
             onMouseEnter={onHoverStartAction}
@@ -41,12 +41,7 @@ export default function GameCard({
             onBlur={onBlurAction}
         >
             {/* NEW: ringed shell, mirrors WritingCard */}
-            <div className="relative overflow-hidden rounded-2xl
-              ring-3 ring-white/10
-              transition-[ring-color,box-shadow] duration-200
-              group-hover:ring-primary focus-visible:ring-primary
-              bg-border"
-            >
+            <div className="card-ring card-ring-hover">
                 <div className="relative aspect-video">
                     {project.cover && (
                         <Image
