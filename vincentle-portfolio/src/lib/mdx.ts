@@ -2,11 +2,12 @@
 import remarkGfm from "remark-gfm";
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolink from 'rehype-autolink-headings';
-import { mdxComponents } from "@/components/mdx/MDXComponents";
+import {mdxComponents, readerHeadingOverrides} from "@/components/mdx/MDXComponents";
 
 export async function compile(source: string) {
     return compileMDX<{ 
         title:string; 
+        author?: string;
         tags?:string[]; 
         cover?:string; 
         hook:string; 
@@ -18,12 +19,12 @@ export async function compile(source: string) {
     (
         {
             source,
-            components: mdxComponents,
+            components: { ...mdxComponents, ...readerHeadingOverrides },
             options: {
                 parseFrontmatter: true,
                 mdxOptions: {
                     remarkPlugins: [remarkGfm],
-                    rehypePlugins: [rehypeSlug, [rehypeAutolink, {behavior: 'wrap'}]],
+                    rehypePlugins: [rehypeSlug],
                 },
             },
         },

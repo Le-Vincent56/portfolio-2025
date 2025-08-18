@@ -13,3 +13,16 @@ export const mdxComponents: MDXComponents = {
         />
     ),
 };
+
+export const readerHeadingOverrides = {
+    h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
+        <section className="reader-h1-page">
+            <h1 {...props} />
+        </section>
+    ),
+    h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
+        <section className="reader-h2-wrap">
+            <h2 {...props} />
+        </section>
+    ),
+};

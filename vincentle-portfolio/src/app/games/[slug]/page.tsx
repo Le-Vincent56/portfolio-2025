@@ -1,6 +1,5 @@
 ﻿import { readGame, listGames } from '@/lib/content'
 import { compile } from '@/lib/mdx'
-import { notFound } from 'next/navigation'
 import PageTransition from "@/components/ui/PageTransition";
 
 export async function generateStaticParams() { return (await listGames()).map(slug => ({ slug })) }

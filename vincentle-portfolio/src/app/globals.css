@@ -1,13 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-@layer utilities {
-  .prose-novel {
-    @apply prose prose-invert prose-lg md:prose-xl;
-    @apply leading-relaxed;
-  }
-}
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -42,6 +35,8 @@ body {
     @apply hover:ring-primary focus-within:ring-primary;
   }
 }
+
+/* ============= AUDIO SECTION ============= */
 
 .modern-scrollbar {
   scrollbar-width: thin;
@@ -143,4 +138,70 @@ body {
 
 [data-open="true"] .cover-img { 
   object-position: 50% 20%; 
+}
+
+/* ============= WRITING SECTION ============= */
+
+.reader-paged {
+    height: 100%;
+    box-sizing: border-box;
+    column-fill: auto;
+    --reader-py: 48px;
+    --reader-h2-gap: 4rem;
+}
+
+.reader-paged .reader-h2-wrap {
+    break-before: column !important;
+    -webkit-column-break-before: always !important;
+    margin: 0; padding: 0;
+    break-inside: avoid;
+}
+.reader-paged .reader-h2-wrap > h2 {
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: var(--reader-h2-gap);
+}
+
+.reader-paged .reader-h1-page {
+    break-before: column !important;
+    break-after: column !important;
+    -webkit-column-break-before: always !important;
+    -webkit-column-break-after: always !important;
+    height: calc(100% - (var(--reader-py) * 2));
+    display: grid;
+    place-items: center;
+    text-align: center;
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+
+    margin: 0;
+    padding: 0;
+}
+
+.reader-paged .reader-h1-page > h1 {
+    margin: 0;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.reader-paged h1 {
+    break-before: column !important;
+    break-after: column !important;
+    -webkit-column-break-before: always !important;
+    -webkit-column-break-after: always !important;
+    height: calc(100% - (var(--reader-py) * 2));
+    display: grid;
+    place-items: center;
+    text-align: center;
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.reader-paged .prose {
+    max-width: none !important; /* defeat the typography plugin’s 65ch clamp */
+    width: 100%;                /* fill the frame’s inline size */
+    margin: 0;                  /* no side margins on the multicol container */
+    box-sizing: border-box;     /* padding is included in our computed width */
 }

@@ -5,14 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d839dd47-789a-4eee-b270-1bc532576e78" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/app/writing/[slug]/opengraph-image.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/writing/AnimatedArticle.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/writing/AnimatedFigure.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/writing/BackToTop.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/writing/CompactMetaBar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/writing/Hotkeys.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/writing/KindleChrome.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/writing/ModeAwareProgress.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/writing/PagedReader.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/writing/PagedReaderWithControls.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/writing/ReaderModePill.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/writing/ReadingProgress.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/writing/RelatedByTag.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/writing/ScrollReaderCard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/writing/StickyBack.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/writing/a-lions-dance-introduction.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/content/writing/a-lions-dance-introduction.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/writing/the-weight-of-honor.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/content/writing/the-weight-of-honor.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/games/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/games/[slug]/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/audio/AlbumCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/audio/AlbumCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/game/GameCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/game/GameCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/writing/WritingCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/writing/WritingCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/writing/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/writing/[slug]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/mdx/MDXComponents.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mdx/MDXComponents.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib/getWriting.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/getWriting.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/mdx.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/mdx.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,6 +128,10 @@
       <workItem from="1755102116664" duration="4189000" />
       <workItem from="1755107993684" duration="12171000" />
       <workItem from="1755183127080" duration="1846000" />
+      <workItem from="1755278855758" duration="899000" />
+      <workItem from="1755297816740" duration="2483000" />
+      <workItem from="1755358298799" duration="9284000" />
+      <workItem from="1755483906136" duration="4887000" />
     </task>
     <servers />
   </component>
