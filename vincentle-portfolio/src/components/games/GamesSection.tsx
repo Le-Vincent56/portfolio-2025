@@ -1,5 +1,5 @@
 ﻿import {GamesMeta} from "@/lib/types";
-import GameCard from "@/components/game/GameCard";
+import GameCard from "@/components/games/GameCard";
 import {useState} from "react";
 
 export default function GamesSection({ games }: { games: GamesMeta[]}) {

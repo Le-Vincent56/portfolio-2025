@@ -40,6 +40,9 @@ export default function PagedReader({
     const pageRef = useRef(1);
     const pagesRef = useRef(1);
 
+    const flipDirRef = useRef<1 | -1>(1);
+    const [flipKey, setFlipKey] = useState(0);
+
     const [page, setPage] = useState(1);
     const [pageCount, setPageCount] = useState(1);
 
@@ -82,13 +85,16 @@ export default function PagedReader({
             const { stride } = computeStride();
             if (!stride) return;
 
-            const clamped = Math.max(1, Math.min(pagesRef.current, p));
-            const left = Math.round((clamped - 1) * stride);
+            const nextIndex = Math.max(1, Math.min(pagesRef.current, p));
+            flipDirRef.current = nextIndex > pageRef.current ? 1 : -1;
+            setFlipKey(k => k + 1);
+
+            const left = Math.round((nextIndex - 1) * stride);
             snapLeft(left, smooth);
 
-            pageRef.current = clamped;
-            setPage(clamped);
-            onPageChangeAction?.(clamped, pagesRef.current);
+            pageRef.current = nextIndex;
+            setPage(nextIndex);
+            onPageChangeAction?.(nextIndex, pagesRef.current);
         },
         [computeStride, onPageChangeAction, snapLeft]
     );

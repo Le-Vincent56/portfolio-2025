@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@layer utilities;
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -34,6 +36,45 @@ body {
   .card-ring-hover {
     @apply hover:ring-primary focus-within:ring-primary;
   }
+}
+
+/* ============= GAME SECTION ============= */
+
+@layer utilities {
+    .game-article { padding-top: 1.25rem; }
+
+    .game-article h2,
+    .game-article h3 {
+        margin: 0 !important;
+        scroll-margin-top: 96px;
+    }
+
+    .game-article h2 {
+        padding-top: 6rem;
+    }
+
+    .game-article h2 + h3 {
+        margin-top: 0 !important;
+    }
+
+    .game-article h2 + :not(h3) {
+        margin-top: 0.5rem !important;
+    }
+
+    .game-article h3 {
+        margin-top: 1rem !important;
+    }
+    .game-article h2 + h3 {
+        margin-top: 0 !important;
+    }
+
+    .game-article h3 + * {
+        margin-top: 0.5rem !important;
+    }
+
+    .game-article > :last-child { 
+        margin-bottom: 2rem !important; 
+    }
 }
 
 /* ============= AUDIO SECTION ============= */
@@ -200,8 +241,15 @@ body {
 }
 
 .reader-paged .prose {
-    max-width: none !important; /* defeat the typography plugin’s 65ch clamp */
-    width: 100%;                /* fill the frame’s inline size */
-    margin: 0;                  /* no side margins on the multicol container */
-    box-sizing: border-box;     /* padding is included in our computed width */
+    max-width: none !important;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .reader-progress-bar {
+        transition: width 180ms cubic-bezier(0.2, 0, 0, 1);
+        will-change: width;
+    }
 }

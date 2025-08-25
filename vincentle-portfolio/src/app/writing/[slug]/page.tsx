@@ -17,7 +17,7 @@ export async function generateStaticParams() {
 }
 
 export default async function WritingPage(
-    { params }: { params: Promise<{ slug: string }> } // Next 15 async params
+    { params }: { params: Promise<{ slug: string }> }
 ) {
     const { slug } = await params;
 

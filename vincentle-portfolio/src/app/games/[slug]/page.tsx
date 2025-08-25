@@ -1,33 +1,53 @@
-﻿import { readGame, listGames } from '@/lib/content'
-import { compile } from '@/lib/mdx'
+﻿import ProgressBar from "@/components/games/ProgressBar";
+import SectionTOC from "@/components/games/SectionTOC";
+import MobileTOC from "@/components/games/MobileTOC";
+import GameHero from "@/components/games/GameHero";
+import { readGame } from "@/lib/content";
+import { compile } from "@/lib/mdx";
+import { GameFrontmatter } from "@/lib/types";
+import StickyBack from "@/components/writing/StickyBack";
+import RelatedProjects from "@/components/games/RelatedProjects";
 import PageTransition from "@/components/ui/PageTransition";
+import GameArticle from "@/components/games/GameArticle";
 
-export async function generateStaticParams() { return (await listGames()).map(slug => ({ slug })) }
 
-export async function generateMetadata({ params }: { params: { slug:string } }) {
-    try {
-        const { frontmatter } = await compile(await readGame(params.slug))
-        return { title: `${frontmatter.title} — Vincent Le`, description: frontmatter.hook }
-    } catch { return { title: 'Project — Vincent Le' } }
-}
-
-export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function GamePage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
-    const source = await readGame(slug)
-    const { content, frontmatter } = await compile(source)
-    const sections = frontmatter.sections ?? ['overview']
+    const source = await readGame(slug);
+    const { content, frontmatter } = await compile(source);
+    
+    const sections = (frontmatter as any).sections ?? [];
+    const related = (frontmatter as any).relatedProjects ?? [];
+
     return (
         <PageTransition>
-            <main className="mx-auto max-w-6xl px-6 py-12 grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-8">
-                <aside aria-label="Project sections" className="sticky top-24 h-fit hidden lg:block">
-                    <nav className="text-sm space-y-2 text-text/70">
-                        {sections.map(id => (
-                            <a key={id} href={`#${id}`} className="block hover:text-text">{id}</a>
-                        ))}
-                    </nav>
-                </aside>
-                <article className="prose prose-invert max-w-none">{content}</article>
-            </main>
+            <div className="bg-background min-h-screen">
+                <StickyBack />
+                <ProgressBar />
+
+                <div className="mx-auto max-w-6xl px-6 py-12">
+                    <div className="grid gap-8 md:grid-cols-[220px_minmax(0,1fr)]">
+                        {/* LEFT: sticky TOC */}
+                        <aside aria-label="Project sections" className="hidden md:block">
+                            <div className="sticky top-24 z-30">
+                                <SectionTOC ids={sections} offsetPx={96} />
+                            </div>
+                        </aside>
+
+                        {/* RIGHT: content */}
+                        <main>
+                            <GameHero fm={frontmatter as GameFrontmatter} />
+                            <GameArticle>
+                                {content}
+                            </GameArticle>
+
+                            {/* Related projects */}
+                            <RelatedProjects items={related} />
+                        </main>
+                        <MobileTOC ids={sections}/>
+                    </div>
+                </div>
+            </div>
         </PageTransition>
-    )
+    );
 }

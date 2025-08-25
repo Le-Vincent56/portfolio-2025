@@ -6,26 +6,151 @@ engine: "Unity"
 platform: ["PC"]
 duration: "2022—Present"
 cover: "/images/games/good-luck-valley.jpg"
-sections: ["overview","design","programming","audio","media","postmortem","presskit"]
+sections: ["Overview", "Design", "Programming", "Audio", "Links"]
+status: "Prototype"
+highlights:
+- "Hand‑crafted platforming with momentum‑based traversal"
+- "Original score and spatial audio"
+tags: [unity, 2d, puzzle, wwise]
+# media:
+# - { src: "/games/glv/clip1.mp4", type: "video", caption: "Traversal prototype" }
+# - { src: "/games/glv/loop.gif", type: "gif", caption: "Ambient loop" }
+relatedProjects:
+    - { slug: "ghost-writer", title: "Ghost Writer", cover: "/images/games/ghost-writer.png"}
 ---
 
 ## Overview
-One‑paragraph project intro…
+*Good Luck Valley* is a 2D, narratively-driven, adventure-platformer set in a magical Spirit World known
+as the Valley. Follow Anari on her journey through the Valley, a beautiful sprawling forest, where every secret
+she uncovers draws her deeper into the world's mysterious magic. As Anari, players will use athletic movement and 
+a magical mushroom mechanic to explore the world. Each action of her journey will leave a constructive result on the 
+slowly-corrupting forest around her. Meet spirits, each with their own magical characteristics and unique personalities;
+some will hinder your journey, others will guide it. But along the way, Anari might just find out how to unite them all,
+and restore the balance of the Valley.
+
+*Good Luck Valley* diversifies the adventure-platformer experience. With modern, genre-defining games, such as *Hollow Knight*,
+*Ori and the Blind Forest*, and *Gris*, there is typically a trade-off within their gameplay. Exploring *Hollow Knight*'s enchanting
+and expansive world requires a higher level of skill revolving around their combat system; the engaging and varied gameplay
+of *Ori and the Blind Forest* lacks world-incorporated feedback; the cinematic and emotional experience of *Gris* requires a slower
+and more thoughtful game loop. *Good Luck Valley* amends the sacrifices of these games to provide an evocative and accessible
+experience. *Good Luck Valley* retains the magical world of *Hollow Knight* through a lower skill ceiling. *Good Luck Valley* 
+emulates the versatile gameplay of *Ori and the Blind Forest* while providing immersive, world-affecting feedback.
+And, *Good Luck Valley* derives the cinematics of *Gris* within an involving and athletic atmosphere.
 
 ## Design
-Pillars, encounters…
+### Establishing Design pillars
+Early in development, our gameplay didn't match the experience we actually wanted to deliver.
+We kept drifting toward *Hollow Knight*-like worlds and wanted *Ori and the Blind Forest*-style
+mechanics; games we admired, but also ones aimed at more experienced players. Our intended audience,
+inspired by Studio Ghibli fans, needed something more accessible: a game with beautiful storytelling
+and approachable gameplay. Instead, we were building something too difficult and unfocused. The problem
+wasn't just the mechanics themselves, but that the team didn't share a unified philosophy for what the
+game should *feel* like.
 
-## Programming
-Architecture, diagrams, code…
+I pitched the idea of creating design pillars as a way to ground us. We scheduled one full meeting to hash
+it out, but like all good meetings, it turned into two. Each team member described how they envisioned the
+game and the results showed that we had similar, but not identical, goals, which made it clear why development
+felt scattered. Together, we sorted through a long list of values, finding words like *Versatile*, *Discovery*,
+*Growth*, and *Cohesive*, but realized these were "nice-to-haves" rather than essential traits. What we needed
+were uncompromising guideposts. We ended up with three: **Energetic**, **Magical** and **Simplistic**. They
+captured both our emotional goals and our design needs, while cutting away the noise.
+
+These pillars became a turning point. They gave us the confidence to lean into mechanics like the Fireflies (Magical + Simplistic)
+and the Shroomflies (Energetic + Magical + Simplistic), both of which playtesters grasped instantly at events like GDC
+and 1Upstate. At the same time, they gave us clarity to cut features that didn't fit, like shelving Ogo until
+he could be made more approachable. For me, this was a design leadership moment: putting an emergency stop on the project
+that was veering off-course and guiding the team through the kind of pre-production process we had skipped as
+freshmen. With the pillars in place, we weren't just brute-forcing ideas anymore, we had a shared philosophy that
+made decision clearer and more confident.
+
+### Switching the Main Mechanic
+When we first built *Good Luck Valley*, the Mushroom Throw was positioned as our main mechanic.
+On paper, it seemed like the right choice: a magical mushroom that you could summon and use
+to bounce in a flexible way; it felt central to the fantasy. But during playtests, it consistently
+confused players and provided a challenge for them in a game that was supposed to be easy and accessible.
+Puzzles built around it were too difficult early on, and the mechanic didn't click the way we imagined.
+Meanwhile, nearly every playtester went out of their way to highlight how fun the Quick Bounce secondary mechanic
+was. Even on feedback forms, they'd spend their final notes just to call out how satisfying it felt. 
+It was clear we had misidentified our core hook.
+
+I pitched swapping their roles. Instead of forcing players through a confusing primary mechanic from the
+start, we'd elevate the bounce to the center of our design and delay, or even cut, the Mushroom Throw.
+The team immediately agreed once I referenced the pile of playtest results backing the idea. From a coding 
+standpoint, the change was minor: the bounce was already implemented, it just needed to be refactored to work 
+cleanly with the new player controller. The biggest shift was philosophical. We re-centered development around three 
+design pillars: Energetic, Magical, and Simplistic. We used them as a lens for every decision moving forward. 
+The Quick Bounce hit all three, while the Mushroom Throw simply didn't.
+
+The impact was immediate. New playtesters picked up the bounce instantly, many didn't even realize it 
+had once been a "new" mechanic. Traversal scores shot up, confusion disappeared, and the game simply felt fun
+to play. Cutting the Mushroom Throw early also freed us to design new secondary mechanics that better reflected the 
+world's Spirits, which ended up strengthening our level design as well. For me, it was mix a of instinct and evidence: 
+I knew as a player, the game wasn't that fun, but I grounded that gut feeling in data and structure to convince 
+the team and reorient the project.
+
+
+## Programming / Technical Design
+### Refactoring the Game
+Like a lot of student prototypes, our early codebase was a mess. We had giant MonoBehaviours doing everything,
+dependencies tangled across unrelated systems, and very little respect for SOLID or DRY principles. Modularity
+and scalability were basically nonexistent, naming conventions were inconsistent, and comments were sparse. It
+worked well enough to get a prototype on its feet, but every feature felt like duct tape on a sinking ship. Bugs
+piled up, iteration slowed, and it became clear the codebase couldn't support the game we wanted to build.
+
+The first major refactor came once we committed to taking *Good Luck Valley* seriously as a long-term project. I
+started by tackling the biggest pain points: the player controller and mushroom mechanics, which were at the core
+of our prototype. But when our team reoriented around new design pillars and swapped our main mechanic, it became
+obvious that patching wasn't enough; the game needed to be rebuilt from the ground up. Taking on responsibility for
+the entire codebase, I made early architectural decisions with both modularity and designer-friendliness in mind.
+For example, our level designer Brody needed tools that wouldn't bog him down in technical details, so I implemented
+data-driven systems using ScriptableObject and refactored our architecture to cleanly follow SOLID and DRY principles.game
+
+The results were worth the time lost in the rebuild. Adding new mechanics became faster, iteration cycles sped up, and
+systems like Wwise integration fit into the project much more smoothly. While it was a necessary engineering fix, it was also
+an immense learning experience. I became a lot more confident in structuring scalable systems and I learned the value of 
+planning architecture with designers in mind. Looking back, I wish I had layered in more DevOps practices: automated builds on push,
+CI/CD pipelines tied to our Trello board, and a stronger culture of unit testing would have made iteration even smoother. But compared
+to where we started, the refactors transformed our project from a fragile prototype into a codebase capable of sustaining development.
 
 ## Audio
-Tracks, intentions…
+### Making Audio Reactive, Not Decorative
+In the early builds of *Good Luck Valley*, audio felt flat. Unity's built-in audio system worked well enough for placeholders, but
+as both a programmer and composer, I found it limiting. Adding interactivity required too much extra work, and as a designer, I 
+wanted more direct control over how music and sound responded to the game. I experimented briefly with FMOD, but ultimately moved to Wwise 
+because its feature set (Switches, RTPCs, and built-in effects) gave me far more flexibility to design audio systems that could 
+react to the world instead of just sit behind it.
 
-## Media
-<Image src="/images/games/good-luck-valley.jpg" alt="GLV" width={1600} height={900} />
+I started by setting up a full Wwise project with clear naming conventions and layered bus structures for both music and SFX. From there, 
+I integrated RTPCs for things like distance-based volume and effects (most notably in our Mushroom Pickup and Lotus Ending scenes), and 
+used States for environmental shifts, horizontal sequencing, and transitions between game states. The leitmotifs I had written for the Vallley, 
+the Forest, and Anari could now exist dynamically in context; for example, surfacing in the title screen, weaving into background layers during 
+exploration, and punctuating key stingers like the Mushroom Pick. Over time, I refined the musical structure to two main loops rather than three, 
+simplifying progression while keeping cohesion across levels. 
 
-## Postmortem
-What went well / lessons…
+The results were dramatic. Playtest music scores jumped from the 5-6 range to an average of 9.1-9.7. Players may not have always known *why* it felt
+better, but they consistently described the game as more immersive, as if the world was alive and responding to them. For me, this was design-first thinking
+realized through technical execution: Wwise gave me the tools to let audio become a core part of the Spirit World's identity, reactive and intertwined 
+with the game's systems instead of ornamental.
 
-## Press Kit
+### Balancing Realism and Magic in Sound
+One of the trickiest challenges in *Good Luck Valley* was finding the right balance between sounds that felt natural and sounds that felt otherworldly.
+We wanted the game to be grounded in the forest and its physicality, but also heavily magical in tone. At first, I didn't have any clear rules for how 
+"real" vs. "magical" each sound should be, I just created whatever came to mind. The result was inconsistent: some sounds were overly realistic, 
+others were fantastical without context, and the Spirit World didn't feel cohesive. 
+
+To fix this, I developed what I called the "realism test → twist test." If a sound was emitting from a source that I would deem as "realistic", the sound 
+would have to pass as believable in the real world, and then I'd layer in something that gave it a fantastical edge. For something grounded, like Anari's clothes, 
+this realism came first: foley of fabric movement. But then, I layered in the ruffling of scrapbook paper to give it a storybook twist. Her footsteps even needed 
+some slight treatment. They were too real, sounding heavy and distracting. So, I EQ'd out low frequencies and made them lighter and more youthful to better match 
+Anari's adventurous energy. Another example is our firefly mechanic, which originally had very literal sounds: plucking fruit from a tree and tiny teeth crunching
+as the fireflies ate. It was funny, but it felt completely wrong for these creatures that originated from magic. I reworked the design around a subtle motif: a consistent, 
+ethereal wind-chime and bell-like texture that plays across all firefly- and Spirit-related sounds.
+
+The result was an aural style that reinforced immersion instead of breaking it. Players described the experience not in terms of individual sounds, 
+but as "everything working well together." That was the goal: cohesion, not spectacle. The audio complemented the art, the art complemented the gampelay, 
+and all of it supported the story. For me, this was more of an artistic exercise than a technical one, but it was one of the most rewarding parts of the project. 
+It gave me the chance to shape the Spirit World's identity not just through music, but through the texture of its sound, blending realism and magic until they felt 
+inseparable.
+
+## Links
 Links and assets.

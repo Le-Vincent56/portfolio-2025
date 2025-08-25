@@ -1,11 +1,10 @@
 ﻿'use client';
 
 import { motion } from 'framer-motion';
-import WritingCard from '@/components/writing/WritingCard';
 import About from '@/components/about/About';
 import { Album, GamesMeta, WritingMeta } from '@/lib/types';
 import AudioSection from '@/components/audio/AudioSection';
-import GamesSection from "@/components/game/GamesSection";
+import GamesSection from "@/components/games/GamesSection";
 import WritingSection from "@/components/writing/WritingSection";
 
 function Sidebar() {

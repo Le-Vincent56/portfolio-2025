@@ -28,8 +28,10 @@ export default function KindleChrome({
                 {/* The progress line grows from left up to before controls */}
                 <div className="relative h-1 flex-1 overflow-hidden rounded-full bg-white/15 m-2">
                     <div
-                        className="absolute inset-y-0 left-0 bg-primary/90"
-                        style={{ width: `${Math.max(0, Math.min(100, progress * 100))}%` }}
+                        className="absolute inset-y-0 left-0 bg-primary/90 will-change-[width] reader-progress-bar"
+                        style={{
+                            width: `${Math.max(0, Math.min(100, progress * 100))}%`,
+                        }}
                     />
                 </div>
 

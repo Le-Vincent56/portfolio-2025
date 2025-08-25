@@ -18,7 +18,7 @@ export async function GetGames(): Promise<GamesMeta[]> {
             const { data } = matter(raw);
 
             const title = (data.title as string) ?? slug;
-            const roles = arrayify((data.roles ?? [data.primaryRole, data.secondaryRole]).filter(Boolean));
+            const roles = arrayify(data.roles ?? [data.primaryRole, data.secondaryRole]).filter(Boolean);
             const hook = (data.hook as string) ?? (data.description as string) ?? '';
             const cover =
                 (data.cover as string) ||

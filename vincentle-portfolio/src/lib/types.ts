@@ -14,6 +14,21 @@ export interface WritingMeta {
     readingTimeText?: string;
 }
 
+export type GameFrontmatter = {
+    title: string;
+    hook?: string;
+    roles?: string[];
+    engine?: string;
+    platform?: string;
+    duration?: string;
+    cover?: string;
+    sections?: string[];
+    status?: "Prototype" | "In Development" | "Released";
+    highlights?: string[];
+    tags?: string[];
+    media?: { src: string; type: "image" | "gif" | "video"; caption?: string }[];
+};
+
 export type Track = {
     id: string;
     title: string;
