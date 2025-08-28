@@ -10,6 +10,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@iconify/react": "^6.0.0",
+    "@icons-pack/react-simple-icons": "^13.7.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.12",
     "gray-matter": "^4.0.3",
@@ -19,6 +21,7 @@
     "next-mdx-remote": "^5.0.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-icons": "^5.5.0",
     "reading-time": "^1.5.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0"

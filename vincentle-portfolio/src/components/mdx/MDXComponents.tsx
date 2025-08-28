@@ -1,7 +1,7 @@
 import Image from "next/image";
-import {ComponentProps, ReactNode} from "react";
+import { ComponentProps, ReactNode } from "react";
 import type { MDXComponents } from "mdx/types";
-import { Figure, FloatFigure, TwoUp } from "./MDXFigures";
+import {Figure, FloatFigure, FloatVideo, TwoUp, VideoFigure} from "./MDXFigures";
 import NextImage from "next/image";
 type NextImageProps = ComponentProps<typeof NextImage>;
 
@@ -39,6 +39,8 @@ export const mdxComponents: MDXComponents = {
     Figure,
     FloatFigure,
     TwoUp,
+    VideoFigure,
+    FloatVideo,
 };
 
 export const readerHeadingOverrides = {

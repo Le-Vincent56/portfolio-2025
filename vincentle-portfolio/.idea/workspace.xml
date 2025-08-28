@@ -5,32 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d839dd47-789a-4eee-b270-1bc532576e78" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/games/Badges.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/games/GameArticle.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/games/GameHero.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/games/Lightbox.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/games/MediaRail.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/games/MetricTiles.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/games/MobileTOC.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/games/ProgressBar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/games/RelatedProjects.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/games/SectionTOC.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mdx/MDXFigures.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/vincent-le.JPEG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/about/Icons.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/content/games/ghost-writer.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/content/games/ghost-writer.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/content/games/good-luck-valley.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/content/games/good-luck-valley.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/games/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/games/[slug]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/writing/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/writing/[slug]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/game/GameCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/games/GameCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/game/GamesSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/games/GamesSection.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/HomeClient.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/HomeClient.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/about/About.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/about/About.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/mdx/MDXComponents.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mdx/MDXComponents.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/writing/KindleChrome.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/writing/KindleChrome.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/writing/PagedReader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/writing/PagedReader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/getGames.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/getGames.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/mdx.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/mdx.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/mdx/MDXFigures.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mdx/MDXFigures.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +73,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;npm.Next.js: server-side.executor&quot;: &quot;Run&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\levin\\OneDrive\\Desktop\\Folders\\portfolio-2025\\vincentle-portfolio\\node_modules\\typescript\\lib&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\levin\\Desktop\\Folders\\portfolio-2025\\vincentle-portfolio\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -136,6 +118,8 @@
       <workItem from="1755358298799" duration="9284000" />
       <workItem from="1755483906136" duration="4887000" />
       <workItem from="1755626356430" duration="26610000" />
+      <workItem from="1756153117290" duration="4276000" />
+      <workItem from="1756342462465" duration="4528000" />
     </task>
     <servers />
   </component>
