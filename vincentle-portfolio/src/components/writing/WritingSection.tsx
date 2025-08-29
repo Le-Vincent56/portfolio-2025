@@ -6,7 +6,7 @@ export default function Writing({ writings }: { writings: WritingMeta[]}) {
     const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
 
     return (
-        <section id="writing-section">
+        <section id="writing">
             <div className="flex items-end justify-between mb-4">
                 <h2 className="text-3xl font-semibold">WRITING</h2>
             </div>

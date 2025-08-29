@@ -2,24 +2,29 @@
 
 import Image from 'next/image';
 import { motion, useReducedMotion } from 'framer-motion';
-import IconSection from './Icons'; // adjust path if needed
+import IconSection from './Icons';
 
 export default function About() {
     const reduce = useReducedMotion();
 
     return (
-        <section className="about">
+        <motion.section
+            className="about"
+            id="about"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.28 }}
+        >
             <div className="grid gap-8 lg:grid-cols-3 lg:items-start">
-                {/* LEFT — 2/3: header, copy, icons, CTA */}
+                {/* LEFT — 2/3 */}
                 <div className="lg:col-span-2">
-                    <header className="mb-2">
-                        <h2 className="text-2xl font-semibold tracking-tight">About</h2>
-                        <p className="mt-2 text-sm opacity-70">
-                            Gameplay / Systems Design • Unity 6 • MS GDD @ RIT
-                        </p>
+                    <header className="mb-2" id="about-header">
+                        <h1 className="text-5xl md:text-6xl font-semibold leading-none tracking-tight">
+                            Vincent Le
+                        </h1>
                     </header>
 
-                    <p className="mt-4 leading-relaxed">
+                    <p className="mt-4 leading-relaxed text-text/60">
                         I’m a Unity-first Gameplay/Systems Designer who turns ideas into
                         readable, systemic play. I prototype fast, validate with real
                         input/UI, and use audio to make state changes obvious. Recent work
@@ -27,19 +32,8 @@ export default function About() {
                         Gameplay/Systems internships & new-grad roles.
                     </p>
 
-                    {/* Icon grid */}
                     <div className="mt-8">
                         <IconSection />
-                    </div>
-
-                    {/* CTA */}
-                    <div className="mt-6">
-                        <a
-                            href="/VincentLe_Resume.pdf"
-                            className="inline-flex items-center rounded-2xl border px-4 py-2 text-sm opacity-90 transition hover:opacity-100 hover:scale-[1.02]"
-                        >
-                            Resume
-                        </a>
                     </div>
                 </div>
 
@@ -65,6 +59,6 @@ export default function About() {
                     </div>
                 </motion.div>
             </div>
-        </section>
+        </motion.section>
     );
 }

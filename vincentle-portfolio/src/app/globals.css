@@ -16,6 +16,7 @@
   --color-border: #575757;
   --album-card-size: 375px;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-background-logo: #1C1E21;
 }
 
 body {
@@ -36,6 +37,10 @@ body {
   .card-ring-hover {
     @apply hover:ring-primary focus-within:ring-primary;
   }
+}
+
+html:focus-within {
+    scroll-behavior: smooth;
 }
 
 /* ============= GAME SECTION ============= */

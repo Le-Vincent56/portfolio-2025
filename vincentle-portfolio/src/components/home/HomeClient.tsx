@@ -1,83 +1,62 @@
 ﻿'use client';
 
-import { motion } from 'framer-motion';
 import About from '@/components/about/About';
 import { Album, GamesMeta, WritingMeta } from '@/lib/types';
 import AudioSection from '@/components/audio/AudioSection';
-import GamesSection from "@/components/games/GamesSection";
-import WritingSection from "@/components/writing/WritingSection";
-
-function Sidebar() {
-    return (
-        <aside className="hidden lg:block fixed left-6 top-24 w-48 text-sm text-text/70">
-            <nav className="space-y-3">
-                {[
-                    ['#top', 'Top'],
-                    ['#about', 'About'],
-                    ['#games', 'Games'],
-                    ['#audio', 'Audio'],
-                    ['#writing', 'Writing'],
-                ].map(([href, label]) => (
-                    <a key={href} href={href} className="block hover:text-primary transition">
-                        {label}
-                    </a>
-                ))}
-            </nav>
-        </aside>
-    );
-}
-
-function Hero() {
-    return (
-        <motion.section
-            id="top"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.28 }}
-        >
-            <h1 className="text-5xl md:text-6xl font-semibold tracking-tight">Vincent Le</h1>
-            <p className="mt-3 text-text/80 text-lg">Gameplay & Systems • Audio • Writing</p>
-            <div className="mt-6 flex gap-3">
-                <a
-                    href="#games"
-                    className="rounded-full bg-primary px-5 py-2.5 font-medium"
-                >
-                    View Games
-                </a>
-                <a href="#audio" className="rounded-full border border-white/20 px-5 py-2.5">
-                    Listen
-                </a>
-            </div>
-        </motion.section>
-    );
-}
+import GamesSection from '@/components/games/GamesSection';
+import WritingSection from '@/components/writing/WritingSection';
+import { useEffect, useState } from 'react';
+import { LayoutGroup } from 'framer-motion';
+import HomeSectionTOC from '@/components/home/HomeSectionTOC';
+import { MobileStickyHeader, MobileMenu } from '@/components/home/MobileNav';
 
 export default function HomeClient({
-        albums,
-        games,
-        writing,
-    }: {
-        albums: Album[];
-        games: GamesMeta[];
-        writing: WritingMeta[];
-    }) {
+    albums,
+    games,
+    writing,
+}: {
+    albums: Album[];
+    games: GamesMeta[];
+    writing: WritingMeta[];
+}) {
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [stickyActive, setStickyActive] = useState(false);
+
+    // Trigger exactly when the About <header> leaves/enters viewport
+    useEffect(() => {
+        const target = document.getElementById('about-header');
+        if (!target) return;
+
+        const io = new IntersectionObserver(
+            ([entry]) => setStickyActive(!entry.isIntersecting),
+            { threshold: 0 }
+        );
+        io.observe(target);
+        return () => io.disconnect();
+    }, []);
+
     return (
-        <div className="min-h-screen bg-background text-text">
-            <Sidebar />
+        <LayoutGroup id="home-shared">
+            <div className="min-h-screen bg-background text-text">
+                {/* Desktop sidebar (lg+) */}
+                <aside className="hidden lg:block fixed left-6 top-24 w-48 text-sm text-text/70">
+                    <HomeSectionTOC ids={['about', 'games', 'audio', 'writing']} offsetPx={96} />
+                </aside>
 
-            <main className="mx-auto max-w-7xl px-6 py-10 lg:pl-56 space-y-24">
-                <Hero />
-                <About />
+                {/* Mobile sticky header + menu */}
+                <MobileStickyHeader
+                    visible={stickyActive}
+                    onOpenAction={() => setMenuOpen(true)}
+                />
+                <MobileMenu open={menuOpen} onCloseAction={() => setMenuOpen(false)} />
 
-                {/* Games */}
-                <GamesSection games={games}/>
-
-                {/* Audio */}
-                <AudioSection albums={albums}/>
-
-                {/* Writing */}
-                <WritingSection writings={writing}/>
-            </main>
-        </div>
+                <main className="mx-auto max-w-7xl px-6 py-10 lg:pl-56 space-y-24">
+                    <About />
+                    <GamesSection games={games} />
+                    <AudioSection albums={albums} />
+                    <WritingSection writings={writing} />
+                </main>
+            </div>
+        </LayoutGroup>
     );
 }

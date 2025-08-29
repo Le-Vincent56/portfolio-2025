@@ -111,8 +111,8 @@ const iconVariants: Variants = {
 };
 
 const labelVariants: Variants = {
-    idle: { opacity: 0, y: 0 },
-    hover: { opacity: 1, y: 25, transition: { duration: 0.18, ease: EASE } },
+    idle: { opacity: 0, y: 0, transition: { duration: 0.09, ease: EASE } },
+    hover: { opacity: 1, transition: { duration: 0.18, ease: EASE } },
 };
 
 // ======= Helpers =============================================================
@@ -195,13 +195,13 @@ export default function IconSection() {
 }
 
 function Tile({
-                  item,
-                  hovered,
-                  reduce,
-                  onEnter,
-                  onLeaveScheduled,
-                  onCancelLeave,
-              }: {
+    item,
+    hovered,
+    reduce,
+    onEnter,
+    onLeaveScheduled,
+    onCancelLeave,
+}: {
     item: Item;
     hovered: boolean;
     reduce: boolean;
@@ -246,7 +246,7 @@ function Tile({
             <motion.span
                 variants={reduce ? undefined : labelVariants}
                 animate={reduce ? 'idle' : hovered ? 'hover' : 'idle'}
-                className="absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 text-xs sm:block"
+                className="absolute left-1/2 bottom-1/4 z-10 hidden -translate-x-1/2 text-xs sm:block"
                 style={reduce ? { opacity: 1, transform: 'translate(-50%, -50%)' } : undefined}
             >
                 {item.label}
