@@ -5,14 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d839dd47-789a-4eee-b270-1bc532576e78" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/home/HomeSectionTOC.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/home/MobileNav.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/content/games/perennial.mdx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/pdfs/ghost-writer-research.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/games/ghost-writer.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/content/games/ghost-writer.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/games/good-luck-valley.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/content/games/good-luck-valley.mdx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/about/About.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/about/About.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/about/Icons.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/about/Icons.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/HomeClient.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/HomeClient.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/writing/WritingSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/writing/WritingSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/MobileNav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/MobileNav.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,6 +121,8 @@
       <workItem from="1756342462465" duration="4528000" />
       <workItem from="1756352250043" duration="1421000" />
       <workItem from="1756430625151" duration="6958000" />
+      <workItem from="1756772285615" duration="3210000" />
+      <workItem from="1757448946650" duration="2857000" />
     </task>
     <servers />
   </component>

@@ -88,7 +88,6 @@ export function MobileStickyHeader({
                             initial={false}
                             animate={{ width: `${progress * 100}%` }}
                             transition={{ duration: reduce ? 0 : 0.18, ease: "easeOut" }}
-                            // no border-radius needed; overflow-hidden on the capsule clips the ends to the curve
                         />
                     </div>
                 </div>
@@ -133,8 +132,6 @@ export function MobileMenu({
         >
             <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
-                    {/* dot icon */}
-                    <span className="inline-block h-2 w-2 rounded-full bg-[var(--color-primary)]/70 ring-1 ring-[var(--color-primary)]/30" />
                     <span className="text-base font-medium text-white/90">{children}</span>
                 </div>
                 {/* chevron */}
@@ -148,8 +145,6 @@ export function MobileMenu({
                     <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" fill="none" />
                 </svg>
             </div>
-            {/* bottom hairline */}
-            <span className="pointer-events-none absolute inset-x-3 bottom-1 block h-px bg-white/5" />
         </a>
     );
 
@@ -190,15 +185,23 @@ export function MobileMenu({
                         {/* Panel header (brand cluster again for cohesion) */}
                         <div className="flex items-center justify-between px-4 py-3">
                             <div className="flex items-center gap-3">
-                                <div className="relative grid place-items-center h-8 w-8 rounded-xl border border-white/10 overflow-hidden">
-                                    <div className="absolute inset-0 opacity-20 bg-[radial-gradient(50%_50%_at_50%_0%,#fff_0%,transparent_60%)]" />
-                                    <span className="text-[11px] font-semibold tracking-wider text-white/90">VL</span>
+                                <div className="relative h-9 w-9 rounded-xl border border-white/10 overflow-hidden bg-background-logo">
+                                    {/* Logo fills the badge but keeps aspect */}
+                                    <Image
+                                        src="/logo.png"           // public/logo.png
+                                        alt="Site icon"
+                                        fill
+                                        sizes="36px"
+                                        className="object-contain p-1"
+                                    />
                                 </div>
                                 <div className="leading-tight">
-                  <span id="mobileMenuTitle" className="block text-[11px] uppercase text-white/50 tracking-wide">
-                    Quick Links
-                  </span>
-                                    <span className="block text-sm font-medium text-white/90">Navigate</span>
+                                    <span id="mobileMenuTitle" className="block text-[11px] uppercase text-white/50 tracking-wide">
+                                      Quick Links
+                                    </span>
+                                    <span className="block text-sm font-medium text-white/90">
+                                        Navigate
+                                    </span>
                                 </div>
                             </div>
 

@@ -112,6 +112,23 @@ planning architecture with designers in mind. Looking back, I wish I had layered
 CI/CD pipelines tied to our Trello board, and a stronger culture of unit testing would have made iteration even smoother. But compared
 to where we started, the refactors transformed our project from a fragile prototype into a codebase capable of sustaining development.
 
+### Using Unity Jobs and Burst
+One major challenge during the early builds of *Good Luck Valley* was its performance. For a 2D game, it was unreasonably
+slow, which was not ideal for a game that requires responsiveness and aesthetic appeal. I spent a lot of time in the
+Unity Profiler, finding that a lot of our game was running on the CPU rather than the GPU, especially since everything
+was single-threaded on the Unity PlayerLoop.
+
+To resolve this, I did some research into Unity DOTS and specifically the Job System. I found that the Job System was a great
+way to parallelize work across multiple threads, but it was also a bit of a black box. I had to read through the documentation
+and experiment with different integrations to finally wrap my head around how it worked. In parallel, I also had to use
+Unity's Burst compiler to take advantage of the Job system. Consequently, I had to rewrite a lot of my code using
+C# and C++ interop, mainly provided by the Unity API (such as NativeArray).
+
+The results were dramatic. I ended up implementing the Job system for our parallax, which required many background assets to move
+in sync with the player at different speeds to emulate depth; and for our fireflies, which had multiple fireflies moving at once,
+both around the player and in their own spaces. Along with the rest of my refactors, I was able to gain approximately 87 FPS according
+to the Unity Profiler, which allowed us to maintain performance on many of our team laptops that we could not before.
+
 ## Audio
 ### Making Audio Reactive, Not Decorative
 In the early builds of *Good Luck Valley*, audio felt flat. Unity's built-in audio system worked well enough for placeholders, but
@@ -153,4 +170,31 @@ It gave me the chance to shape the Spirit World's identity not just through musi
 inseparable.
 
 ## Links
-Links and assets.
+<a href="https://github.com/Le-Vincent56/Good-Luck-Valley"
+   target="_blank"
+   rel="noopener noreferrer"
+   className="underline underline-offset-4 hover:text-primary transition-colors"
+>
+    GitHub
+</a>
+<a href="https://hivemind-studios.itch.io/good-luck-valley"
+   target="_blank"
+   rel="noopener noreferrer"
+   className="underline underline-offset-4 hover:text-primary transition-colors"
+>
+    Itch.IO
+</a>
+<a href="https://www.instagram.com/hivemind__studios/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D#"
+   target="_blank"
+   rel="noopener noreferrer"
+   className="underline underline-offset-4 hover:text-primary transition-colors"
+>
+    Instagram
+</a>
+<a href="https://discord.com/invite/h8qBkH3YRT"
+   target="_blank"
+   rel="noopener noreferrer"
+   className="underline underline-offset-4 hover:text-primary transition-colors"
+>
+    Discord
+</a>
