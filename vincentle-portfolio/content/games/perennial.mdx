@@ -1,67 +1,112 @@
 ---
 title: "Perennial"
 roles: ["Systems Programmer", "DevOps Engineer"]
-hook: "Become the best within the Dead Poet's Society."
+hook: "Plan, plant, and mutate to outsmart the seasons."
 engine: "Unity"
 platform: ["PC"]
-duration: "2023—2024"
-cover: "/images/games/ghost-writer.png"
-sections: ["overview","programming"]
+duration: "2025"
+cover: "/images/games/perennial.png"
+sections: ["Overview", "Design", "Programming", "Links"]
 status: "Prototype"
 highlights:
-- "Innovation in Q-learning algorithms for opponent AI"
+- "Designer-friendly Extensible Plant System"
 tags: [unity, 2d, game jam]
 relatedProjects:
     - { slug: "good-luck-valley", title: "Good Luck Valley", cover: "/images/games/good-luck-valley.jpg"}
+    - { slug: "ghost-writer", title: "Ghost Writer", cover: "/images/games/ghost-writer.png"}
 ---
 
 ## Overview
-Ghost Writer is a 2D, top-down, writing-based management-tycoon game in which the player competes to become a bestseller,
-within the Dead Poet's Society: a group of young, undead authors. Their goal is to stimulate the industry with
-new ideas while keeping themselves financially afloat.
+*Perennial* is a top-down, 2D, turn-based, farming, strategy game made in Unity 6. The player advances through a loop of seasons — 
+Spring, Summer, Fall, Winter — while growing crops on a 5x5 grid of soil tiles. The player’s goal is to generate Food by 
+planting, tending, and harvesting fantasy crops. The game ends when the player either reaches a set Food quota (win), or 
+has no way to plant new crops (loss).
 
-Ghost Writer was a prototype made in Unity that was meant to explore two things: modular software engineering principles
-in game design (with its use of patterns such as the Mediator and Service Locator patterns), as well as innovation
-within Q-learning algorithms for opponent AI. What resulted was a tycoon sim with built Q-Learning rivals that were
-streamlined for staged design, who consistently crushed the random baselines and yielded clear tuning levers for difficulty.
+*Perennial* was a prototype made during the GMTK 2025 Game Jam that I did with some members that would end up on my 
+Graduate Capstone team as we wanted to test our process and roles. I was put in charge of programming the Plant system: 
+programmatically designing plants that would have to be extensible, flexible, and, most importantly, highly-iterable. 
+However, my contributions also extended outward as I helped reign in the final plant design for the Game Jam and 
+what each plant should do in order to create a better gameplay experience.
+
+## Design
+### Finding the Fun in Plants
+When we were originally designing the plants, we knew that each plant should have six traits: a Food Equation, to calculate
+how much food it would give on harvest (scaling by months); a Growth Time (how long until the plant is harvestable); a 
+Harvest Time (the number of months in which the plant can be harvested before dying); an Ability (which can be triggered in many ways);
+Ungrowable Seasons (to force players to think with precaution); and Bonus Harvest Seasons (to incentivize players to think
+strategically for rewards). However, early on, our designs were very basic and rushed out. In a game where our main strategy
+came from placement, a lot of the plants punished the player for doing so (with the Chili killing adjacent plants when harvested for a lot
+more food; or the Evil Carrot which would turn all Soil adjacent to it to be Weeded, or unplantable). It worked against our Mutation System,
+which was to reward adjacency by rewarding players with new plants and allowing them to discover the different "recipes" that came with
+harvesting plants that were adjacent to each other for different types of seeds. Overall, the players were not incentivized to use plants 
+to adapt to seasons, soil, or mutational constraints (our strongest systems), but rather to other plants, which was already difficult
+given our small 5x5 grid size.
+
+When I was implementing the plants programmatically, I found that, when I was testing, I was having trouble actually *winning*. I did
+an hour deep-dive as to why I wasn't having fun in a game that I was creating and proposed changes: to modify soil, seasonal resistance, or
+mutation chances through the Abilities. As a rule, our Abilities should not directly attack plants, but rather offer buffs or debuffs to the 
+environment. It should encourage combination over segregation, to help our players interact with the Mutation System. Then, for riskier plants,
+we make it a double-edged sword: offer high risk for high reward.
+
+The game instantly became a lot easier and a lot more fun during internal playtests (as well as small external playtests with friends).
+For reference, our Chili Pepper now became: "When planted, increases food output of nearby plants, but Weeds nearby soil in half the time." It
+was not just a general "food-for-debuff" ability like it was before, but it now fixated on aiding the plants around it, encouraging players to
+engage with the risk by engaging with the ability and, consequently, the Mutation System. Due to how I programmed the Plant system, it was not
+difficult to switch to these new Abilities either. If the project were to continue long term, we would be able to iterate on these Abilities
+with ease as a designer, not having to worry about how much technical debt any changes would require.
+
 
 ## Programming
-### Innovating Q-Learning for AI opponents
-Most tycoon games ship with AI "rivals" that feel static and unchallenging, undercutting the simulation fantasy of a
-competitive environment. I set out to build AI opponents for my writing-management game, *Ghost Writer*, that actually
-learns to compete with the player over time.
+### Designing Systems to be Designer Friendly
+With very little time to make the game for our game jam (I, personally, had about two days), the system that I had to make for the Plants had
+to be 1) easy to understand and interface with, 2) extensible for any additional plants we might've added, and 3) designer-friendly. As a pure
+programmer most of my life, that last part was difficult for me. I didn't have a lot of experience creating with a designer in mind. However, the
+solution that I came up with was one of my proudest to date. 
 
-I designed a modifier Q-Learning system tailored to Ghost Writer's four chained development phases: Concept,
-Focus 1, Focus 2, and Focus 3. However, during my research, I found that the original Q-Learning algorithm was
-inadequate for this task, and I had to make some modifications to it. Instead of transitioning to a "next state"
-each step, the learner references the current max Q-value, which reframes the discount term and removes the
-"walk length" parameter, streamlining learning for staged workflows. I implemented the architecture in Unity
-C#: ReinforcementProblem as the action evaluator, QValueStore/QLearner as modularized learning components,
-and two brains - LearnedBrain for Q-Learning-based actions and RandomBrain for random actions. I evaluated
-them across multi-trial datasets, scoring by average work quality and sales over three in-game years.
+I relied on my software engineering interests in patterns to make a fully component-based
+system with Scriptable Object behaviors. Instead of traditional interfaces, the plants communicated through signals, allowing data-driven design without
+coding necessary, the only thing the designer needed to do was to implement Behaviors through Scriptable Objects (which would be turned into a PlantBehaviorInstance
+at runtime to hold state). The benefits were immense: designers could easily mix and match Plant Behaviors (which were also re-usable) in the Unity Inspector, as 
+well as add their own new behaviors without touching existing code; each behavior would create an instance to allow it to track its own state during runtime;
+type-safe queries still existed through the architecture, and it was SOLID compliant, extending the Open/Closed principle.
 
-Across all trials, learned rivals significantly beat random agents. In 10-trial tests (3 iterations per step),
-even the weakest learned setup outperformed the random agent by ~163% in sales. With deeper training (50 iterations per step),
-top agents achieved ~99 average score (out of 100) and ~160k average sales vs. ~26k for random agents. This parameter
-study showed the best rivals combine high learning and high exploration with a low discount factor.
+As a result, the designers on my team only needed a short onboarding to the tool before they could mix and match Abilities. This became especially useful
+once we had to pivot to change our Plant Abilities to their second iteration to help find the fun (see above). If the game were to have continued,
+the architecture put in place for the Plant System would have allowed for many new plants to have been added, all without having to touch any code
+besides adding new, specified Behaviors to be re-used (which was commonly only a couple of lines).
 
-I wrote a research paper diving into the details of the algorithm, its application in *Ghost Writer*, and the
-game data derived from its use.
+### Practicing DevOps
+As I noted before, my team and I would end up being together on our Graduate Capstone project. This was intentional: to try out our current process
+together before jumping into a year-long one. Overall, we knew how we worked, but we wanted to nail down any questions about each others' processes,
+and our process as a team, that we could answer/solve quickly when the semester started. However, I already knew one problem that we struggled with due 
+to our experience with the Global Game Jam, only a semester-or-so before: building and deploying on time.
 
-<a
-    href="/pdfs/ghost-writer-research.pdf"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="underline underline-offset-4 hover:text-primary transition-colors"
->
-    Read the full paper (PDF)
-</a>
+With my background in game production as a Production Intern at MAGIC Spell Studios, I was interested specifically in technical production and, more specifically, 
+DevOps methodology. I decided to use this time to implement some basic Continuous Integration/Continuous Deployment to help remedy our previous struggle. The
+GitHub Action would check whenever a commit was pushed to the main branch and then automatically attempt to create a Unity web build that we could use for our 
+itch.io page for submission. 
+
+After a few tweaks, we were able to deploy many builds through pushing code, not having to worry about spending the last hour to worry about how long it will 
+take to deploy or final product. Overall, we still had other issues in terms of technical production: mainly the lack of a branching model, which led to a lot 
+of merges that we had to fix in a panic, as well as some hidden uses of the OnValidate() function that would eventually sneak past our eyes and prevent us 
+from having a working WebGL build by the deadline. However, the issue that was prominent during our time at the Global Game Jam, was no longer an issue now, and 
+would likely not become an issue in the future. As we wrapped up the project, I continued to think how I could continue to study DevOps and further simplify 
+the process for programmers in game development, and it is what I ended up wanting to research alongside my capstone project.
 
 ## Links
-<a href="https://github.com/Le-Vincent56/Writer-Tycoon-Redux"
+<a href="https://github.com/Le-Vincent56/GMTKGJ2025"
     target="_blank"
     rel="noopener noreferrer"
     className="underline underline-offset-4 hover:text-primary transition-colors"
 >
     GitHub
+</a>
+
+<a
+    href="https://lokkei.itch.io/perennial"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="underline underline-offset-4 hover:text-primary transition-colors"
+>
+    Itch.IO
 </a>
