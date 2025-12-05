@@ -21,14 +21,6 @@ type VideoProps = BaseMediaProps & {
     aspectRatio?: number;
 };
 
-type GifProps = BaseMediaProps & {
-    src: string;
-    alt?: string;
-    width?: number;
-    height?: number;
-    sizes?: string;
-};
-
 function Figcap({ children }: { children?: ReactNode }) {
     if (!children) return null;
     return (

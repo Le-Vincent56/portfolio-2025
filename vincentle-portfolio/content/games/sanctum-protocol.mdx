@@ -1,0 +1,107 @@
+---
+title: "Sanctum Protocol"
+roles: ["Technical Director", "Audio Lead", "Producer"]
+hook: "How far are you willing to bend the rules to restore order?"
+engine: "Unity"
+platform: ["PC"]
+duration: "2025—Present"
+cover: "/images/games/sanctum-protocol.png"
+sections: ["Overview", "Programming", "Links"]
+status: "Pre-Production"
+highlights:
+- "Unique Unity Architecture"
+- "Gothic/Sci-fi Aesthetic"
+tags: [unity, 2d, roguelike, deckbuilder]
+relatedProjects:
+    - { slug: "good-luck-valley", title: "Good Luck Valley", cover: "/images/games/good-luck-valley.jpg"}
+    - { slug: "perennial", title: "Perennial", cover: "/images/games/perennial.png"}
+    - { slug: "ghost-writer", title: "Ghost Writer", cover: "/images/games/ghost-writer.png"}
+order: 1
+---
+
+## Overview
+In *Sanctum Protocol*, The VIRUS has infected your faith. As a machine priest, take calculated risks to navigate the 
+sanctum’s network, wield verses in battle, and lock in rule-altering Doctrines. How far are you willing to bend the rules 
+to restore order?
+
+*Sanctum Protocol* is currently in the pre-production phase, starting production within January 2026. The project is meant to explore
+the various goals of my team members (procedural generation, UI accessibility, card game design, AI decision making), as well as my own:
+unique Unity architectures, tool and system programming, and DevOps integration. What resulted was a Simulation-Adapter-Presentation layer
+separation, inspired by hexagonal software design; a purely data-driven Effect system for modular, scalable, and reusable Effects; and many
+debugging and logging tools for telemetry, build health, and bug tracking.
+
+## Programming
+### Designing a Hexagonal-Inspired Unity Architecture
+Most Unity projects suffer from tight coupling between game logic and engine code. MonoBehaviours handle everything from state mutation to UI updates,
+making unit testing painful, bugs hard to trace, and refactoring risky. Especially working with a team of six other programmers, I knew that our codebase
+would be fragile if we did not plan accordingly. For *Sanctum Protocol*, a roguelike deckbuilder with complex rule interactions and stack-based resolution,
+with also a set focus on UI accessibility, I knew a traditional approach would collapse under its own weight.Architecture
+
+I designed a three-layer architecture inspired by Alistair Cockburn's Hexagonal Architecture: Simulation, Adapter, and Presentation. The Simulation layer 
+lives in its own pure C# assembly with zero UnityEngine references. It owns all game rules, the stack engine, turn systems, AI, procedural generation, and effects. 
+The Simulation layer works exclusively with plain data types and Data Transfer Objects (DTOs). Commands flow in, domain event flow out. The Adapter layer bridges the Presentation and 
+Simulation layers: it maps ScriptableObjects to DTOs at load time, routes commands from Uniy to the Simulation through a single entry point, and dispatches domain events back 
+to subscribers. The Presentation layer handles everything visual and audible, converting player input into commands and subscribing to events to trigger animations, audio, or UI state changes.Architecture
+
+The payoff has been substantial. Because the Simulation has no Unity dependencies, we can run fast, deterministic unit tests without entering Play Mode. This helped us shape our backend code through
+Test-Driven Development (TDD) and allowed us to quickly iterate on rules. With one command path, it makes Qa simpler and allows bugs to be reproduced easier. We can swap adapters, UI, or data pipelines 
+without game rules. The architecture also opens the door for modding: feed in different DTOs without changing game logic. For a project with a year-long production timeline, this 
+foundation means we can iterate on mechanics confidently without fear of cascading breakage. 
+
+<Image
+    src="/images/games/sanctum-protocol-architecture.png"
+    alt="The Hexagonal-Architecture-inspired Architecture Diagram"
+/>
+
+### Building Production-Ready Observability Tools
+Debugging in games is difficult. When a player reports that something was wrong, we need to know exactly what happened, especially for those pesky edge cases. In our game, we would 
+need to know exactly what commands were submitted, which events fired, and in what order, and what the state looked like at each step. Traditional Unity debugging (console logs and breakpoints) fall apart 
+when dealing with asynchronous event chains and can become cloudy due to excessive logging. Without proper tooling, our QA process would have been guesswork.
+
+Foreseeing this, I built a suite of observability tools that treat debugging as a first-class concern. Every domain event leaves the Simulation wrapped in an envelope carrying ordering metadata: Submit index, 
+Frame index, EventID, CommandID, CorrelationID, and CausationID. This guarantees total ordering and reproducible causation chains. A custom Debugger Window (gated behind 'UNITY_EDITOR || DEVELOPMENT_BUILD') 
+displays the current Simulation snapshot, a rolling buffer of the last N envelopes, and the active RNG seed, all updated at ~10HZ with lock-protected circular buffers and one-click JSOn export for bug reports.
+Furthermore, the Structured Logger converts every accepted Submit into newline-delimited JSON records, capturing session metadata, commands, envelopes, and per-submit snapshot hashes. Files auto-rotate at ~100MB with 
+configurable retention, and the async batched writes prevent main-thread stalls.
+
+The impact on our workflow has been dramatic. Bugs are easier to track than ever because we can see the exact Command and Events that led out up them. The envelope stream shows precisely what happened, when, and why. 
+The Debugger Window provides real-time visibility during our work-sessions and allows us to report bugs during playtests if necessary, and the structured logging means we can run analytics across sessions to catch patterns. 
+What used to be "I think the bug is somewhere in combat resolution" becomes "Submit 47, Frame 3, DamageApplied event shows an incorrect value; CausationID traces back to this protocol effect". This tooling transformed our debugging 
+from archaeology into engineering.
+
+<Image
+    src="/images/games/sanctum-protocol-debugger.png"
+    alt="The Sanctum Protocol Debugger Window"
+/>
+
+### Creating a Data-Driven Effect System
+Card games depend on their ability to iterate on card designs quickly. In early prototypes, our card effects were hardcoded in handlers: playing a card meant a specific handler would deal damage, draw cards, or manipulate the stack 
+directly. Every new card required new code. Every balance tweak required a programmer. Our designer couldn't experiment without waiting for implementation, and the growing handler count was becoming unmanageable.
+
+I refactored the entire action system to route through a unified Effect pipeline. All game actions, including damage, block, adding protocols, and sciarding became Operations that could be composed into Effects via ScriptableObject assets. 
+A RuntimeParameters structure provides type-safe dynamic parameterization at runtime while maintaining compile-time defaults for designer-authored effects. The system uses a step-based processor: each EffectStep can filter targets via Predicates, 
+slice candidates by TargetMode, handle selection requests for player input, and execute Operations in sequence. Handlers now simply set RuntimeParameters and invoke well-known Effects like `"add_protocol"` or `"discard_card"`, which designers can 
+extend without touching code.
+
+The results speak for themselves. Designers can now create new card abilities (as well as Enemies, Statuses, Turn Phases, and more) entirely in the Unity Inspector by mixing and matching Operations and Predicates. Adding a new keyword means creating a new 
+EffectDefinitionAsset, not writing a new handler. Balance iterations that previously required a programmer now happen in minutes. The same Operations power card effects, enemy actions, phase triggers, and any future system we add. Most importantly, the system scales: 
+we're not accumulating technical debt with every new card, we're building a library of reusable components that compound in value.
+
+<Image
+    src="/images/games/sanctum-protocol-compilation-flow.png"
+    alt="The Sequence of Compilation in Sanctum Protocol"
+/>
+
+<Image
+    src="/images/games/sanctum-protocol-authoring-assets.png"
+    alt="The Diagram of Authoring Assets in Sanctum Protocol"
+/>
+
+## Links
+<a href="https://github.com/Le-Vincent56/Sanctum-Protocol"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="underline underline-offset-4 hover:text-primary transition-colors"
+>
+    GitHub
+</a>

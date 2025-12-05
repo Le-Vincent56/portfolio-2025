@@ -3,7 +3,6 @@ import PageTransition from '@/components/ui/PageTransition';
 import { readWriting, listWriting } from '@/lib/content';
 import { compile } from '@/lib/mdx';
 import { getReadingStats } from '@/lib/readingTime';
-import { getRelatedByTags } from '@/lib/getWriting';
 
 import ReaderModePill from '@/components/writing/ReaderModePill';
 import ReadingProgress from '@/components/writing/ReadingProgress';
@@ -25,10 +24,11 @@ export default async function WritingPage(
     const { content, frontmatter } = await compile(source);
     const stats = getReadingStats(source);
 
-    const title = (frontmatter as any).title as string;
-    const author = (frontmatter as any).author as string | undefined;
-    const cover = (frontmatter as any).cover as string | undefined;
-    const tags = (frontmatter as any).tags as string[];
+    const fm = frontmatter as { title: string; author?: string; cover?: string; tags?: string[] };
+    const title = fm.title;
+    const author = fm.author;
+    const cover = fm.cover;
+    const tags = fm.tags ?? [];
     const minutes = Math.ceil(stats.minutes);
 
     return (

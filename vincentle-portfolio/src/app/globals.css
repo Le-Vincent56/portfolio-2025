@@ -8,6 +8,10 @@
   --foreground: #171717;
 }
 
+html {
+  background-color: var(--color-background, #121212);
+}
+
 @theme {
   --color-primary: #7998d8;
   --color-text: #ffffff;

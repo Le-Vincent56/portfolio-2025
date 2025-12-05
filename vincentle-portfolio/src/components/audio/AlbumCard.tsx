@@ -120,7 +120,7 @@ export default function AlbumCard({
 
                                     {/* duration */}
                                     <div className="text-xs tabular-nums text-text/70 px-3">
-                                        {fmt((t as any).duration)}
+                                        {fmt(t.duration)}
                                     </div>
 
                                     {/* play/pause */}
@@ -129,7 +129,7 @@ export default function AlbumCard({
                                         aria-label={isActive ? 'Pause' : 'Play'}
                                         onClick={(e) => {
                                             e.stopPropagation();
-                                            isCurrent ? p.toggle() : onPlayAction(i);
+                                            if (isCurrent) { p.toggle(); } else { onPlayAction(i); }
                                         }}
                                     >
                                         <span className="sr-only">{isActive ? 'Pause' : 'Play'}</span>
@@ -259,7 +259,7 @@ export default function AlbumCard({
 
                                             {/* duration */}
                                             <div className="text-xs tabular-nums text-text/70 px-3">
-                                                {fmt((t as any).duration)}
+                                                {fmt(t.duration)}
                                             </div>
 
                                             {/* play/pause toggle */}
@@ -268,7 +268,7 @@ export default function AlbumCard({
                                                 aria-label={isActive ? 'Pause' : 'Play'}
                                                 onClick={(e) => {
                                                     e.stopPropagation();
-                                                    isCurrent ? p.toggle() : onPlayAction(i);
+                                                    if (isCurrent) { p.toggle(); } else { onPlayAction(i); }
                                                 }}
                                             >
                                                 <span className="sr-only">{isActive ? 'Pause' : 'Play'}</span>

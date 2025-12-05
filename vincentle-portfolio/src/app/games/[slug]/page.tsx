@@ -16,8 +16,8 @@ export default async function GamePage({ params }: { params: Promise<{ slug: str
     const source = await readGame(slug);
     const { content, frontmatter } = await compile(source);
     
-    const sections = (frontmatter as any).sections ?? [];
-    const related = (frontmatter as any).relatedProjects ?? [];
+    const sections = (frontmatter as GameFrontmatter).sections ?? [];
+    const related = (frontmatter as GameFrontmatter & { relatedProjects?: { slug: string; title: string; cover?: string }[] }).relatedProjects ?? [];
 
     return (
         <PageTransition>

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { ComponentProps, ReactNode } from "react";
 import type { MDXComponents } from "mdx/types";
 import {Figure, FloatFigure, FloatVideo, TwoUp, VideoFigure} from "./MDXFigures";

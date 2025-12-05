@@ -9,7 +9,7 @@ export default async function AudioPage() {
             <main className="mx-auto max-w-6xl px-6 py-12">
                 <h1 className="text-3xl font-semibold mb-6">Audio</h1>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {albums.map((a:any) => (
+                    {albums.map((a) => (
                         <div key={a.id} className="rounded-xl ring-1 ring-white/10 p-5">
                             <div className="text-lg font-medium">{a.title}</div>
                             <div className="text-text/60 text-sm mb-4">{a.tracks.length} tracks</div>

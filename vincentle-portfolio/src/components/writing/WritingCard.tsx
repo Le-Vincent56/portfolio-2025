@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import clsx from 'clsx';
 import { WritingMeta } from '@/lib/types';
 
 type Props = {

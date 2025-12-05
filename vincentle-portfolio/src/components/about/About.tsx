@@ -24,7 +24,7 @@ export default function About() {
                         </h1>
                     </header>
                     <p className="mt-4 leading-relaxed text-text/60">
-                        I build the gameplay, score the moment, and track the progress. I'm a Technical Designer /
+                        I build the gameplay, score the moment, and track the progress. I&apos;m a Technical Designer /
                         Gameplay Programmer who focuses on modular and scalable systems, composes and implements audio, and 
                         threads narrative through mechanics. On the production side, I lead Scrum ceremonies and wire up
                         DevOps—CI/CD, automated testing, and tool integrations—so my teams work faster with fewer regressions.

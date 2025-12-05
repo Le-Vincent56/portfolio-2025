@@ -41,10 +41,9 @@ export default function PagedReader({
     const pagesRef = useRef(1);
 
     const flipDirRef = useRef<1 | -1>(1);
-    const [flipKey, setFlipKey] = useState(0);
 
-    const [page, setPage] = useState(1);
-    const [pageCount, setPageCount] = useState(1);
+    const [, setPage] = useState(1);
+    const [, setPageCount] = useState(1);
 
     const reduce = useReducedMotion();
     const settleTimer = useRef<number | null>(null);
@@ -87,7 +86,6 @@ export default function PagedReader({
 
             const nextIndex = Math.max(1, Math.min(pagesRef.current, p));
             flipDirRef.current = nextIndex > pageRef.current ? 1 : -1;
-            setFlipKey(k => k + 1);
 
             const left = Math.round((nextIndex - 1) * stride);
             snapLeft(left, smooth);
@@ -136,10 +134,10 @@ export default function PagedReader({
             content.style.padding = `${paddingY}px ${paddingX}px`;
             content.style.columnGap = `${gap}px`;
             content.style.columnWidth = `${columnWidth}px`;
-            (content.style as any).columnFill = 'auto';
+            content.style.columnFill = 'auto';
             content.style.boxSizing = 'border-box';
-            (content.style as any).setProperty?.('--reader-py', `${paddingY}px`);
-            (content.style as any).setProperty?.('--reader-px', `${paddingX}px`);
+            content.style.setProperty('--reader-py', `${paddingY}px`);
+            content.style.setProperty('--reader-px', `${paddingX}px`);
             content.style.width = '100%';
 
             // compute total pages from scrollable width
@@ -254,7 +252,7 @@ export default function PagedReader({
                     className="group relative w-full overflow-x-auto overflow-y-hidden overscroll-contain"
                     style={{
                         scrollbarWidth: 'none',          // Firefox
-                        msOverflowStyle: 'none' as any,  // legacy Edge/IE
+                        msOverflowStyle: 'none',  // legacy Edge/IE
                     }}
                 >
                     {/* Multi-column content that truly fills the viewport height */}

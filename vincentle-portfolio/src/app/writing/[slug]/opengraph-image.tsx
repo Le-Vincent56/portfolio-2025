@@ -2,7 +2,7 @@
 import { readWriting } from '@/lib/content';
 import { compile } from '@/lib/mdx';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -11,9 +11,10 @@ export default async function Image({ params }: { params: { slug: string } }) {
     const source = await readWriting(slug);
     const { frontmatter } = await compile(source);
 
-    const title = (frontmatter as any).title as string;
-    const author = (frontmatter as any).author as string | undefined;
-    const cover = (frontmatter as any).cover as string | undefined;
+    const fm = frontmatter as { title: string; author?: string; cover?: string };
+    const title = fm.title;
+    const author = fm.author;
+    const cover = fm.cover;
 
     // Basic OG layout: blurred cover background + title overlay
     const bg = cover ? new URL(cover, process.env.NEXT_PUBLIC_SITE_URL) : undefined;

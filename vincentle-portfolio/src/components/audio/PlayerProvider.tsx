@@ -156,7 +156,7 @@ export default function PlayerProvider({ children }: { children: React.ReactNode
     useEffect(() => {
         const onKey = (e: KeyboardEvent) => {
             const t = e.target as HTMLElement | null;
-            if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || (t as any).isContentEditable)) return;
+            if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
             if (e.code === 'Space') { e.preventDefault(); toggle(); }
             else if (e.code === 'ArrowRight') next();
             else if (e.code === 'ArrowLeft') prev();
@@ -180,7 +180,7 @@ export default function PlayerProvider({ children }: { children: React.ReactNode
             navigator.mediaSession.setActionHandler('pause', () => setPlaying(false));
             navigator.mediaSession.setActionHandler('previoustrack', prev);
             navigator.mediaSession.setActionHandler('nexttrack', next);
-            navigator.mediaSession.setActionHandler('seekto', (d: any) => seek(d.seekTime ?? 0));
+            navigator.mediaSession.setActionHandler('seekto', (d) => seek(d?.seekTime ?? 0));
         } catch {}
     }, [current?.id, current?.title, next, prev, seek]);
 

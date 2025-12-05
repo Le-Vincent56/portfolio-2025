@@ -8,7 +8,6 @@ import type { Variants } from 'framer-motion';
 const EXPANSION = 1.25;
 const CLEAR_DELAY = 80;
 const BASE_TILE = 112;
-const GAP_X = 12;
 const GAP_Y = 12;
 
 function useInteractiveLayout() {
@@ -218,7 +217,7 @@ function Tile({
                 'rounded-2xl text-current',
                 'card-hover card-ring card-ring-hover',
             ].join(' ')}
-            style={{ transformOrigin: origin as any }}
+            style={{ transformOrigin: origin }}
             // ENTER: commit immediately; also cancel any pending clear
             onPointerEnter={() => {
                 onCancelLeave();
